@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mochi Agent</string>
+    <string name="mochiagent_responded">Mochi Agent merespons</string>
+    <string name="ask_mochiagent">Tanyakan apa saja ke Mochi Agent...</string>
+    <string name="welcome_to_mochiagent">Selamat datang di Mochi Agent.</string>
+    <string name="onboarding_welcome_title">Selamat datang di Mochi Agent</string>
+    <string name="crash_title">Mochi Agent berhenti secara tak terduga</string>
+    <string name="rating_title">Beri nilai Mochi Agent</string>
+    <string name="data_import_subtitle">Pulihkan dari file ekspor .mochiagent sebelumnya.</string>
+    <string name="import_invalid_file">File .mochiagent tidak valid. Silakan pilih ekspor yang valid.</string>
+    <string name="documentation">Dokumentasi</string>
+    <string name="show_documentation_links">Tampilkan Tautan Dokumentasi</string>
+    <string name="show_documentation_links_desc">Tampilkan tombol dokumentasi pada halaman pengaturan</string>
+    <string name="about_website">Situs Web</string>
+</resources>
