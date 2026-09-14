@@ -26,7 +26,7 @@ struct LlamaHandle {
 extern "C" {
 
 JNIEXPORT jboolean JNICALL
-Java_com_newoether_agora_api_LlamaEngine_nativeInitializeBackends(
+Java_com_mochiagent_app_api_LlamaEngine_nativeInitializeBackends(
     JNIEnv * env, jclass /*clazz*/, jstring native_library_dir) {
 
     if (!native_library_dir) return JNI_FALSE;
@@ -45,7 +45,7 @@ Java_com_newoether_agora_api_LlamaEngine_nativeInitializeBackends(
 }
 
 JNIEXPORT jlong JNICALL
-Java_com_newoether_agora_api_LlamaEngine_nativeLoadModel(
+Java_com_mochiagent_app_api_LlamaEngine_nativeLoadModel(
     JNIEnv * env, jclass /*clazz*/, jstring path) {
 
     const char * path_str = env->GetStringUTFChars(path, nullptr);
@@ -94,7 +94,7 @@ Java_com_newoether_agora_api_LlamaEngine_nativeLoadModel(
 }
 
 JNIEXPORT void JNICALL
-Java_com_newoether_agora_api_LlamaEngine_nativeFreeModel(
+Java_com_mochiagent_app_api_LlamaEngine_nativeFreeModel(
     JNIEnv * /*env*/, jclass /*clazz*/, jlong handle_ptr) {
 
     if (!handle_ptr) return;
@@ -107,7 +107,7 @@ Java_com_newoether_agora_api_LlamaEngine_nativeFreeModel(
 }
 
 JNIEXPORT jfloatArray JNICALL
-Java_com_newoether_agora_api_LlamaEngine_nativeComputeEmbedding(
+Java_com_mochiagent_app_api_LlamaEngine_nativeComputeEmbedding(
     JNIEnv * env, jclass /*clazz*/, jlong handle_ptr, jstring text) {
 
     if (!handle_ptr) return nullptr;
@@ -190,7 +190,7 @@ Java_com_newoether_agora_api_LlamaEngine_nativeComputeEmbedding(
 }
 
 JNIEXPORT jint JNICALL
-Java_com_newoether_agora_api_LlamaEngine_nativeGetEmbeddingDim(
+Java_com_mochiagent_app_api_LlamaEngine_nativeGetEmbeddingDim(
     JNIEnv * /*env*/, jclass /*clazz*/, jlong handle_ptr) {
 
     if (!handle_ptr) return 0;

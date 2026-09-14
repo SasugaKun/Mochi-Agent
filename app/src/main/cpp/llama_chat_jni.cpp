@@ -340,10 +340,10 @@ static jobject make_template_result(
     bool supports_tools
 ) {
     jclass trigger_class = env->FindClass(
-        "com/newoether/agora/api/ChatTemplateGrammarTrigger"
+        "com/mochiagent/app/api/ChatTemplateGrammarTrigger"
     );
     jclass result_class = env->FindClass(
-        "com/newoether/agora/api/LlamaChatTemplateResult"
+        "com/mochiagent/app/api/LlamaChatTemplateResult"
     );
     jclass string_class = env->FindClass("java/lang/String");
     if (!trigger_class || !result_class || !string_class) return nullptr;
@@ -353,7 +353,7 @@ static jobject make_template_result(
         result_class,
         "<init>",
         "(Ljava/lang/String;ZLjava/lang/String;ZLjava/lang/String;"
-        "[Lcom/newoether/agora/api/ChatTemplateGrammarTrigger;[Ljava/lang/String;I"
+        "[Lcom/mochiagent/app/api/ChatTemplateGrammarTrigger;[Ljava/lang/String;I"
         "Ljava/lang/String;)V"
     );
     if (!trigger_ctor || !result_ctor) return nullptr;
@@ -428,7 +428,7 @@ static bool read_template_metadata(
     jfieldID format_field = env->GetFieldID(result_class, "format", "I");
     jfieldID triggers_field = env->GetFieldID(
         result_class, "grammarTriggers",
-        "[Lcom/newoether/agora/api/ChatTemplateGrammarTrigger;"
+        "[Lcom/mochiagent/app/api/ChatTemplateGrammarTrigger;"
     );
     jfieldID preserved_field = env->GetFieldID(
         result_class, "preservedTokens", "[Ljava/lang/String;"
@@ -690,7 +690,7 @@ static bool is_preserved_token(
 extern "C" {
 
 JNIEXPORT jlong JNICALL
-Java_com_newoether_agora_api_LlamaChatEngine_nativeChatLoadModel(
+Java_com_mochiagent_app_api_LlamaChatEngine_nativeChatLoadModel(
     JNIEnv * env, jclass /*clazz*/, jstring path, jint n_ctx) {
 
     const char * path_str = env->GetStringUTFChars(path, nullptr);
@@ -766,7 +766,7 @@ Java_com_newoether_agora_api_LlamaChatEngine_nativeChatLoadModel(
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_newoether_agora_api_LlamaChatEngine_nativeChatGetTemplate(
+Java_com_mochiagent_app_api_LlamaChatEngine_nativeChatGetTemplate(
     JNIEnv * env, jclass /*clazz*/, jlong handle_ptr) {
 
     if (!handle_ptr) return nullptr;
@@ -779,7 +779,7 @@ Java_com_newoether_agora_api_LlamaChatEngine_nativeChatGetTemplate(
 }
 
 JNIEXPORT jobject JNICALL
-Java_com_newoether_agora_api_LlamaChatEngine_nativeChatApplyTemplate(
+Java_com_mochiagent_app_api_LlamaChatEngine_nativeChatApplyTemplate(
     JNIEnv * env, jclass /*clazz*/, jlong handle_ptr, jobject request) {
 
     if (!handle_ptr || !request) return nullptr;
@@ -788,10 +788,10 @@ Java_com_newoether_agora_api_LlamaChatEngine_nativeChatApplyTemplate(
 
     jclass request_class = env->GetObjectClass(request);
     jfieldID messages_field = env->GetFieldID(
-        request_class, "messages", "[Lcom/newoether/agora/api/ChatTemplateMessage;"
+        request_class, "messages", "[Lcom/mochiagent/app/api/ChatTemplateMessage;"
     );
     jfieldID tools_field = env->GetFieldID(
-        request_class, "tools", "[Lcom/newoether/agora/api/ChatTemplateTool;"
+        request_class, "tools", "[Lcom/mochiagent/app/api/ChatTemplateTool;"
     );
     jfieldID add_generation_field = env->GetFieldID(
         request_class, "addGenerationPrompt", "Z"
@@ -841,7 +841,7 @@ Java_com_newoether_agora_api_LlamaChatEngine_nativeChatApplyTemplate(
         }
         jfieldID calls_field = env->GetFieldID(
             message_class, "toolCalls",
-            "[Lcom/newoether/agora/api/ChatTemplateToolCall;"
+            "[Lcom/mochiagent/app/api/ChatTemplateToolCall;"
         );
         jobjectArray calls = static_cast<jobjectArray>(
             env->GetObjectField(message, calls_field)
@@ -911,7 +911,7 @@ Java_com_newoether_agora_api_LlamaChatEngine_nativeChatApplyTemplate(
 }
 
 JNIEXPORT jint JNICALL
-Java_com_newoether_agora_api_LlamaChatEngine_nativeChatGenerate(
+Java_com_mochiagent_app_api_LlamaChatEngine_nativeChatGenerate(
     JNIEnv * env, jclass /*clazz*/, jlong handle_ptr,
     jobject template_result, jfloat temperature, jfloat top_p,
     jfloat frequency_penalty, jfloat presence_penalty, jint max_tokens,
@@ -1160,7 +1160,7 @@ Java_com_newoether_agora_api_LlamaChatEngine_nativeChatGenerate(
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_newoether_agora_api_LlamaChatEngine_nativeChatLoadMmproj(
+Java_com_mochiagent_app_api_LlamaChatEngine_nativeChatLoadMmproj(
     JNIEnv * env, jclass /*clazz*/, jlong handle_ptr, jstring mmproj_path) {
 
     if (!handle_ptr) return JNI_FALSE;
@@ -1195,7 +1195,7 @@ Java_com_newoether_agora_api_LlamaChatEngine_nativeChatLoadMmproj(
 }
 
 JNIEXPORT void JNICALL
-Java_com_newoether_agora_api_LlamaChatEngine_nativeChatUnloadMmproj(
+Java_com_mochiagent_app_api_LlamaChatEngine_nativeChatUnloadMmproj(
     JNIEnv * /*env*/, jclass /*clazz*/, jlong handle_ptr) {
 
     if (!handle_ptr) return;
@@ -1208,7 +1208,7 @@ Java_com_newoether_agora_api_LlamaChatEngine_nativeChatUnloadMmproj(
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_newoether_agora_api_LlamaChatEngine_nativeChatHasMmproj(
+Java_com_mochiagent_app_api_LlamaChatEngine_nativeChatHasMmproj(
     JNIEnv * /*env*/, jclass /*clazz*/, jlong handle_ptr) {
 
     if (!handle_ptr) return JNI_FALSE;
@@ -1217,7 +1217,7 @@ Java_com_newoether_agora_api_LlamaChatEngine_nativeChatHasMmproj(
 }
 
 JNIEXPORT jint JNICALL
-Java_com_newoether_agora_api_LlamaChatEngine_nativeChatGenerateWithImages(
+Java_com_mochiagent_app_api_LlamaChatEngine_nativeChatGenerateWithImages(
     JNIEnv * env, jclass /*clazz*/, jlong handle_ptr,
     jobject template_result, jobjectArray image_paths,
     jfloat temperature, jfloat top_p,
@@ -1506,7 +1506,7 @@ Java_com_newoether_agora_api_LlamaChatEngine_nativeChatGenerateWithImages(
 }
 
 JNIEXPORT void JNICALL
-Java_com_newoether_agora_api_LlamaChatEngine_nativeChatFreeModel(
+Java_com_mochiagent_app_api_LlamaChatEngine_nativeChatFreeModel(
     JNIEnv * /*env*/, jclass /*clazz*/, jlong handle_ptr) {
 
     if (!handle_ptr) return;
@@ -1522,7 +1522,7 @@ Java_com_newoether_agora_api_LlamaChatEngine_nativeChatFreeModel(
 }
 
 JNIEXPORT void JNICALL
-Java_com_newoether_agora_api_LlamaChatEngine_nativeChatCancel(
+Java_com_mochiagent_app_api_LlamaChatEngine_nativeChatCancel(
     JNIEnv * /*env*/, jclass /*clazz*/, jlong handle_ptr) {
 
     if (!handle_ptr) return;
