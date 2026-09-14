@@ -794,7 +794,7 @@ class ApprovedFeatureSourceContractTest {
         )
         val developerKey = Regex("""<string name="(developer_options_[^"]+)"""")
 
-        assertEquals(12, localeFiles.size)
+        assertEquals(13, localeFiles.size)
         localeFiles.forEach { file ->
             val keys = developerKey.findAll(file.readText())
                 .map { match -> match.groupValues[1] }

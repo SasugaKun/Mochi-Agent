@@ -542,7 +542,7 @@ class LocalLlamaOwnershipSourceContractTest {
         .substringBefore("\n    fun ")
 
     private fun nativeFunctionSection(source: String, functionName: String): String = source
-        .substringAfter("Java_com_newoether_agora_api_LlamaChatEngine_$functionName(")
+        .substringAfter("Java_com_mochiagent_app_api_LlamaChatEngine_$functionName(")
         .substringBefore("\nJNIEXPORT")
 
     private fun mainSource(relativePath: String): String = locateSourceRoot("java")
