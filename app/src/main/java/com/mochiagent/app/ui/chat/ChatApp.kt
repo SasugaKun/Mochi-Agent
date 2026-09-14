@@ -656,7 +656,7 @@ fun ChatApp(
                                         .verticalScroll(rememberScrollState()),
                                     contentAlignment = Alignment.TopCenter
                                 ) {
-                                    val welcomeText = stringResource(R.string.welcome_to_agora)
+                                    val welcomeText = stringResource(R.string.welcome_to_mochiagent)
                                     val availableWelcomeHeight =
                                         windowHeightDp +
                                             topBarH.value / 2f -

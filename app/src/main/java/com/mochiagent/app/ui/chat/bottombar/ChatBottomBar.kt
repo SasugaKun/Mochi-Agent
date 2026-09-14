@@ -426,7 +426,7 @@ internal fun ChatBottomBar(
                     .verticalScrollbar(scrollState, MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)),
                 placeholder = {
                     Text(
-                        stringResource(R.string.ask_agora),
+                        stringResource(R.string.ask_mochiagent),
                         style = ChatType.input,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                     )

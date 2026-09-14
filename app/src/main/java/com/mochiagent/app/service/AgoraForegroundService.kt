@@ -277,7 +277,7 @@ class AgoraForegroundService : Service() {
             }
             val notification = NotificationCompat.Builder(context, COMPLETION_CHANNEL_ID)
                 .setContentTitle(
-                    context.getString(if (isError) R.string.app_name else R.string.agora_responded)
+                    context.getString(if (isError) R.string.app_name else R.string.mochiagent_responded)
                 )
                 .setContentText(displayText)
                 .setSmallIcon(R.drawable.ic_notification)
