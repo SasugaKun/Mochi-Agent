@@ -10,23 +10,23 @@ class SandboxSnackbarSourceContractTest {
     @Test
     fun `Sandbox outcomes use one process-local buffered one-shot owner across flavors`() {
         val contract = sourceFile(
-            "app/src/main/java/com/newoether/agora/sandbox/SandboxManager.kt",
+            "app/src/main/java/com/mochiagent/app/sandbox/SandboxManager.kt",
         )
         val fdroid = sourceFile(
-            "app/src/fdroid/java/com/newoether/agora/sandbox/ProotSandboxManager.kt",
+            "app/src/fdroid/java/com/mochiagent/app/sandbox/ProotSandboxManager.kt",
         )
         val factoryContract = sourceFile(
-            "app/src/main/java/com/newoether/agora/sandbox/SandboxManagerFactory.kt",
+            "app/src/main/java/com/mochiagent/app/sandbox/SandboxManagerFactory.kt",
         )
         val fdroidFactory = sourceFile(
-            "app/src/fdroid/java/com/newoether/agora/sandbox/FdroidSandboxManagerFactory.kt",
+            "app/src/fdroid/java/com/mochiagent/app/sandbox/FdroidSandboxManagerFactory.kt",
         )
         val play = sourceFile(
-            "app/src/play/java/com/newoether/agora/sandbox/PlaySandboxManager.kt",
+            "app/src/play/java/com/mochiagent/app/sandbox/PlaySandboxManager.kt",
         )
-        val activity = sourceFile("app/src/main/java/com/newoether/agora/MainActivity.kt")
+        val activity = sourceFile("app/src/main/java/com/mochiagent/app/MainActivity.kt")
         val chatViewModel = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/ChatViewModel.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/ChatViewModel.kt",
         )
         val uiContract = sourceFile("development/application-ui.md")
         val normalizedUiContract = Regex("\\s+").replace(uiContract, " ")

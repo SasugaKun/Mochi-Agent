@@ -10,10 +10,10 @@ class CurrentApprovedFeatureSourceContractTest {
     @Test
     fun `Skill add imports Markdown and starts destinations while its sheet hides`() {
         val skills = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsSkillsPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsSkillsPage.kt",
         )
         val prompts = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsPromptsPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsPromptsPage.kt",
         )
         val skillAction = skills
             .substringAfter("fun runAddSkillAction(action: () -> Unit)")
@@ -81,10 +81,10 @@ class CurrentApprovedFeatureSourceContractTest {
     @Test
     fun `MCP page entry rebuilds errors with bounded connection work`() {
         val registry = sourceFile(
-            "app/src/main/java/com/newoether/agora/mcp/McpRegistry.kt",
+            "app/src/main/java/com/mochiagent/app/mcp/McpRegistry.kt",
         )
         val page = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsMcpPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsMcpPage.kt",
         )
 
         assertTrue(registry.contains("runtimeStatus == McpConnectionStatus.CONNECTING"))
@@ -97,25 +97,25 @@ class CurrentApprovedFeatureSourceContractTest {
     @Test
     fun `Automation wake lock is persisted portable resettable and scoped to execution`() {
         val schema = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/SettingsPreferenceSchema.kt",
+            "app/src/main/java/com/mochiagent/app/data/SettingsPreferenceSchema.kt",
         )
         val manager = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/SettingsManager.kt",
+            "app/src/main/java/com/mochiagent/app/data/SettingsManager.kt",
         )
         val repository = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/repository/SettingsRepository.kt",
+            "app/src/main/java/com/mochiagent/app/data/repository/SettingsRepository.kt",
         )
         val portable = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/PortableSettingsArchive.kt",
+            "app/src/main/java/com/mochiagent/app/data/PortableSettingsArchive.kt",
         )
         val legacy = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/ExportExtraSettings.kt",
+            "app/src/main/java/com/mochiagent/app/data/ExportExtraSettings.kt",
         )
         val engine = sourceFile(
-            "app/src/main/java/com/newoether/agora/automation/TaskExecutionEngine.kt",
+            "app/src/main/java/com/mochiagent/app/automation/TaskExecutionEngine.kt",
         )
         val owner = sourceFile(
-            "app/src/main/java/com/newoether/agora/automation/AutomationWakeLockOwner.kt",
+            "app/src/main/java/com/mochiagent/app/automation/AutomationWakeLockOwner.kt",
         )
 
         assertTrue(schema.contains("AUTOMATION_WAKE_LOCK_ENABLED"))
@@ -135,7 +135,7 @@ class CurrentApprovedFeatureSourceContractTest {
     @Test
     fun `Automation orders wake lock and flavor-safe battery actions in every locale`() {
         val page = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsAutomationPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsAutomationPage.kt",
         )
         val manifest = sourceFile("app/src/main/AndroidManifest.xml")
         val fdroidManifest = sourceFile("app/src/fdroid/AndroidManifest.xml")

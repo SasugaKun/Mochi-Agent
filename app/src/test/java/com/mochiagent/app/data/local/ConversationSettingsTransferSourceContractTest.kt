@@ -7,7 +7,7 @@ import org.junit.Test
 class ConversationSettingsTransferSourceContractTest {
     @Test
     fun firstSendCreatesTheOutboxInsideTheRoomGraphTransaction() {
-        val dao = sourceFile("app/src/main/java/com/newoether/agora/data/local/ChatDao.kt")
+        val dao = sourceFile("app/src/main/java/com/mochiagent/app/data/local/ChatDao.kt")
             .replace("\r\n", "\n")
         val transactionStart = dao.indexOf(
             "@Transaction\n    suspend fun createConversationRunWithMessages(",
@@ -33,7 +33,7 @@ class ConversationSettingsTransferSourceContractTest {
     @Test
     fun firstSendConsumesOnlyTheExactTapTimeNewChatWorkspace() {
         val generation = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/MessageGenerationController.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/MessageGenerationController.kt",
         ).replace("\r\n", "\n")
         val capture = generation.substringAfter("internal fun captureForegroundSendTarget")
             .substringBefore("internal suspend fun prepareForegroundSend")
@@ -47,7 +47,7 @@ class ConversationSettingsTransferSourceContractTest {
         assertTrue(prepare.contains("draftAttachments = composer.attachments"))
 
         val newChatDao = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/local/NewChatPersistDao.kt",
+            "app/src/main/java/com/mochiagent/app/data/local/NewChatPersistDao.kt",
         )
         listOf(
             "modelId IS :modelId",
@@ -61,7 +61,7 @@ class ConversationSettingsTransferSourceContractTest {
     @Test
     fun nativeImportCommitsTheBatchOutboxWithTheGraphAndReconcilesAfterCommit() {
         val graphImporter = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/NativeConversationGraphImporter.kt",
+            "app/src/main/java/com/mochiagent/app/data/NativeConversationGraphImporter.kt",
         ).replace("\r\n", "\n")
         val importGraph = graphImporter.substringAfter("suspend fun importConversationGraph(")
             .substringBefore("// Internal data classes")
@@ -75,7 +75,7 @@ class ConversationSettingsTransferSourceContractTest {
         assertTrue(returnTransfer > writeOutbox)
 
         val dataImporter = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/DataImporter.kt",
+            "app/src/main/java/com/mochiagent/app/data/DataImporter.kt",
         ).replace("\r\n", "\n")
         val conversations = dataImporter.substringAfter(
             "if (convDecision != null && convDecision != ImportStrategy.SKIP) {",
@@ -104,7 +104,7 @@ class ConversationSettingsTransferSourceContractTest {
     @Test
     fun cancelledBatchSettingsWriteRestoresPersistedStateBeforeRethrow() {
         val settings = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/repository/SettingsRepository.kt",
+            "app/src/main/java/com/mochiagent/app/data/repository/SettingsRepository.kt",
         ).replace("\r\n", "\n")
         val importWrite = settings.substringAfter(
             "suspend fun applyConversationSettingsImportAndAwait(",
@@ -120,12 +120,12 @@ class ConversationSettingsTransferSourceContractTest {
 
     @Test
     fun processStartupReplaysOnlyThePendingOutboxAfterTheListPublishes() {
-        val container = sourceFile("app/src/main/java/com/newoether/agora/di/AppContainer.kt")
+        val container = sourceFile("app/src/main/java/com/mochiagent/app/di/AppContainer.kt")
             .replace("\r\n", "\n")
         val startup = container.substringAfter("fun startProcessServices()")
             .substringBefore("\n    val taskRepository")
         val viewModel = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/ChatViewModel.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/ChatViewModel.kt",
         ).replace("\r\n", "\n")
         val initJobs = viewModel.substringAfter("private fun startInitJobs()")
             .substringBefore("// Per-conversation generation lifecycle")

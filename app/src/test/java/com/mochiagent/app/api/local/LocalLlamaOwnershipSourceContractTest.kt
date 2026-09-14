@@ -14,14 +14,14 @@ import org.junit.Test
 class LocalLlamaOwnershipSourceContractTest {
     @Test
     fun `title generation delegates local serialization to the Provider`() {
-        val source = mainSource("com/newoether/agora/viewmodel/ConversationTitleGenerator.kt")
+        val source = mainSource("com/mochiagent/app/viewmodel/ConversationTitleGenerator.kt")
 
         assertFalse(source.contains("LocalModelRuntime"))
     }
 
     @Test
     fun `Provider runs the complete request inside the process runtime`() {
-        val source = mainSource("com/newoether/agora/api/local/LocalProvider.kt")
+        val source = mainSource("com/mochiagent/app/api/local/LocalProvider.kt")
         val admission = source.indexOf("LocalModelRuntime.runChat(")
         val template = source.indexOf("engine.applyTemplate")
         val generation = source.indexOf("tokenFlow.collect")
@@ -35,7 +35,7 @@ class LocalLlamaOwnershipSourceContractTest {
 
     @Test
     fun `native mutation is exclusive while cancellation remains concurrent`() {
-        val source = mainSource("com/newoether/agora/api/LlamaChatEngine.kt")
+        val source = mainSource("com/mochiagent/app/api/LlamaChatEngine.kt")
 
         listOf("loadMmproj", "unloadMmproj").forEach { functionName ->
             assertTrue(functionSection(source, functionName).contains("lock.writeLock().lock()"))
@@ -47,7 +47,7 @@ class LocalLlamaOwnershipSourceContractTest {
 
     @Test
     fun `stream delivery blocks for capacity and native cancellation is atomic`() {
-        val engine = mainSource("com/newoether/agora/api/LlamaChatEngine.kt")
+        val engine = mainSource("com/mochiagent/app/api/LlamaChatEngine.kt")
         val native = mainCppSource("llama_chat_jni.cpp")
 
         assertTrue(engine.contains("trySendBlocking(LlamaGenerationEvent.Text(text)).isSuccess"))
@@ -62,8 +62,8 @@ class LocalLlamaOwnershipSourceContractTest {
     fun `chat templates use the official structured tool owner and fail closed by capability`() {
         val cmake = mainCppSource("CMakeLists.txt")
         val native = mainCppSource("llama_chat_jni.cpp")
-        val engine = mainSource("com/newoether/agora/api/LlamaChatEngine.kt")
-        val provider = mainSource("com/newoether/agora/api/local/LocalProvider.kt")
+        val engine = mainSource("com/mochiagent/app/api/LlamaChatEngine.kt")
+        val provider = mainSource("com/mochiagent/app/api/local/LocalProvider.kt")
 
         assertTrue(cmake.contains("set(LLAMA_BUILD_COMMON ON CACHE BOOL \"\" FORCE)"))
         assertFalse(cmake.contains("add_subdirectory(\${LLAMA_CPP_DIR}/common"))
@@ -98,8 +98,8 @@ class LocalLlamaOwnershipSourceContractTest {
 
     @Test
     fun `template grammar and penalties reach the shared native sampler`() {
-        val provider = mainSource("com/newoether/agora/api/local/LocalProvider.kt")
-        val engine = mainSource("com/newoether/agora/api/LlamaChatEngine.kt")
+        val provider = mainSource("com/mochiagent/app/api/local/LocalProvider.kt")
+        val engine = mainSource("com/mochiagent/app/api/LlamaChatEngine.kt")
         val native = mainCppSource("llama_chat_jni.cpp")
         val sampler = native
             .substringAfter("static common_sampler * init_chat_sampler(")
@@ -177,11 +177,11 @@ class LocalLlamaOwnershipSourceContractTest {
     @Test
     fun `local output uses the template parser as the typed stream authority`() {
         val native = mainCppSource("llama_chat_jni.cpp")
-        val engine = mainSource("com/newoether/agora/api/LlamaChatEngine.kt")
-        val providerContract = mainSource("com/newoether/agora/api/LlmProvider.kt")
-        val provider = mainSource("com/newoether/agora/api/local/LocalProvider.kt")
-        val normalizer = mainSource("com/newoether/agora/api/util/ProviderStreamNormalizer.kt")
-        val runner = mainSource("com/newoether/agora/viewmodel/ProviderPassRunner.kt")
+        val engine = mainSource("com/mochiagent/app/api/LlamaChatEngine.kt")
+        val providerContract = mainSource("com/mochiagent/app/api/LlmProvider.kt")
+        val provider = mainSource("com/mochiagent/app/api/local/LocalProvider.kt")
+        val normalizer = mainSource("com/mochiagent/app/api/util/ProviderStreamNormalizer.kt")
+        val runner = mainSource("com/mochiagent/app/viewmodel/ProviderPassRunner.kt")
         val parser = native
             .substringAfter("struct NativeChatParser {")
             .substringBefore("static common_sampler * init_chat_sampler(")
@@ -257,7 +257,7 @@ class LocalLlamaOwnershipSourceContractTest {
 
     @Test
     fun `typed generation events stay module internal`() {
-        val engine = mainSource("com/newoether/agora/api/LlamaChatEngine.kt")
+        val engine = mainSource("com/mochiagent/app/api/LlamaChatEngine.kt")
 
         assertTrue(engine.contains("internal fun generate("))
         assertTrue(engine.contains("internal fun generateWithImages("))
@@ -265,7 +265,7 @@ class LocalLlamaOwnershipSourceContractTest {
 
     @Test
     fun `runtime unloads before switching identity and isolates embeddings`() {
-        val runtime = mainSource("com/newoether/agora/api/LocalModelRuntime.kt")
+        val runtime = mainSource("com/mochiagent/app/api/LocalModelRuntime.kt")
         val embeddingNative = mainCppSource("llama_jni.cpp")
         val chatSwitch = runtime.indexOf("unloadResident()")
         val chatLoad = runtime.indexOf("LlamaChatEngine(identity.canonicalPath, identity.nCtx)")
@@ -291,7 +291,7 @@ class LocalLlamaOwnershipSourceContractTest {
 
     @Test
     fun `same chat identity reuses only proven native token prefixes`() {
-        val runtime = mainSource("com/newoether/agora/api/LocalModelRuntime.kt")
+        val runtime = mainSource("com/mochiagent/app/api/LocalModelRuntime.kt")
         val native = mainCppSource("llama_chat_jni.cpp")
         val text = nativeFunctionSection(native, "nativeChatGenerate")
         val prepare = native
@@ -350,9 +350,9 @@ class LocalLlamaOwnershipSourceContractTest {
     @Test
     fun `android CPU backends are packaged and initialized before local model loads`() {
         val cmake = mainCppSource("CMakeLists.txt")
-        val appContainer = mainSource("com/newoether/agora/di/AppContainer.kt")
-        val runtime = mainSource("com/newoether/agora/api/LocalModelRuntime.kt")
-        val engine = mainSource("com/newoether/agora/api/LlamaEngine.kt")
+        val appContainer = mainSource("com/mochiagent/app/di/AppContainer.kt")
+        val runtime = mainSource("com/mochiagent/app/api/LocalModelRuntime.kt")
+        val engine = mainSource("com/mochiagent/app/api/LlamaEngine.kt")
         val embeddingNative = mainCppSource("llama_jni.cpp")
         val chatNative = mainCppSource("llama_chat_jni.cpp")
 
@@ -409,7 +409,7 @@ class LocalLlamaOwnershipSourceContractTest {
 
     @Test
     fun `idle offload is generation safe and uses the canonical permit`() {
-        val runtime = mainSource("com/newoether/agora/api/LocalModelRuntime.kt")
+        val runtime = mainSource("com/mochiagent/app/api/LocalModelRuntime.kt")
         val queue = runtime.substringAfter("internal class LocalModelTaskQueue(")
             .substringBefore("internal object LocalModelRuntime")
 
@@ -430,12 +430,12 @@ class LocalLlamaOwnershipSourceContractTest {
 
     @Test
     fun `idle retention is bound once and remains device local`() {
-        val appContainer = mainSource("com/newoether/agora/di/AppContainer.kt")
+        val appContainer = mainSource("com/mochiagent/app/di/AppContainer.kt")
         val settingsPage = mainSource(
-            "com/newoether/agora/ui/settings/SettingsProviderDetailPage.kt",
+            "com/mochiagent/app/ui/settings/SettingsProviderDetailPage.kt",
         )
-        val portable = mainSource("com/newoether/agora/data/PortableSettingsArchive.kt")
-        val settingsManager = mainSource("com/newoether/agora/data/SettingsManager.kt")
+        val portable = mainSource("com/mochiagent/app/data/PortableSettingsArchive.kt")
+        val settingsManager = mainSource("com/mochiagent/app/data/SettingsManager.kt")
         val portableReset = settingsManager
             .substringAfter("suspend fun resetPortableSettingsForImport()")
             .substringBefore("suspend fun invalidatePortableModelCaches")
@@ -458,8 +458,8 @@ class LocalLlamaOwnershipSourceContractTest {
 
     @Test
     fun `projector is image gated and reused by path`() {
-        val provider = mainSource("com/newoether/agora/api/local/LocalProvider.kt")
-        val engine = mainSource("com/newoether/agora/api/LlamaChatEngine.kt")
+        val provider = mainSource("com/mochiagent/app/api/local/LocalProvider.kt")
+        val engine = mainSource("com/mochiagent/app/api/LlamaChatEngine.kt")
         val projectorLoad = functionSection(engine, "loadMmproj")
 
         assertTrue(provider.contains("if (hasImages)"))
@@ -495,7 +495,7 @@ class LocalLlamaOwnershipSourceContractTest {
 
     @Test
     fun `Local context capacity failures keep one stable semantic code`() {
-        val provider = mainSource("com/newoether/agora/api/local/LocalProvider.kt")
+        val provider = mainSource("com/mochiagent/app/api/local/LocalProvider.kt")
         val completedContextFull = provider
             .substringAfter("LlamaGenerationStopReason.CONTEXT_FULL ->")
             .substringBefore("LlamaGenerationStopReason.CANCELLED ->")
@@ -512,9 +512,9 @@ class LocalLlamaOwnershipSourceContractTest {
 
     @Test
     fun `local context and settings cannot promise an impossible output`() {
-        val provider = mainSource("com/newoether/agora/api/local/LocalProvider.kt")
-        val settings = mainSource("com/newoether/agora/ui/settings/SettingsProviderDetailPage.kt")
-        val onboarding = mainSource("com/newoether/agora/ui/onboarding/WelcomeScreen.kt")
+        val provider = mainSource("com/mochiagent/app/api/local/LocalProvider.kt")
+        val settings = mainSource("com/mochiagent/app/ui/settings/SettingsProviderDetailPage.kt")
+        val onboarding = mainSource("com/mochiagent/app/ui/onboarding/WelcomeScreen.kt")
         val native = mainCppSource("llama_chat_jni.cpp")
         val legacyDefaults = LocalChatModelConfig(modelId = "model", alias = "Model")
 

@@ -212,7 +212,7 @@ class ChatDaoExternalImportReplaceTest {
         repeat(8) {
             val candidate = File(
                 directory,
-                "app/src/main/java/com/newoether/agora/$relativePath",
+                "app/src/main/java/com/mochiagent/app/$relativePath",
             )
             if (candidate.isFile) return candidate
             directory = directory.parentFile ?: return@repeat

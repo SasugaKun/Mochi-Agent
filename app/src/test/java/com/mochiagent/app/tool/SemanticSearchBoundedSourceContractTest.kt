@@ -9,17 +9,17 @@ class SemanticSearchBoundedSourceContractTest {
     @Test
     fun semanticSearchHotPathUsesKeysetPagesInsteadOfAFullEmbeddingList() {
         val root = locateMainSourceRoot()
-        val dao = File(root, "com/newoether/agora/data/local/ChatDao.kt")
+        val dao = File(root, "com/mochiagent/app/data/local/ChatDao.kt")
             .readText()
             .replace("\r\n", "\n")
         val repository = File(
             root,
-            "com/newoether/agora/data/repository/ConversationRepository.kt",
+            "com/mochiagent/app/data/repository/ConversationRepository.kt",
         ).readText()
-        val provider = File(root, "com/newoether/agora/tool/RagToolProvider.kt").readText()
+        val provider = File(root, "com/mochiagent/app/tool/RagToolProvider.kt").readText()
         val selector = File(
             root,
-            "com/newoether/agora/tool/BoundedSemanticEmbeddingSelector.kt",
+            "com/mochiagent/app/tool/BoundedSemanticEmbeddingSelector.kt",
         ).readText()
 
         assertFalse(provider.contains("getEmbeddingsByModel("))

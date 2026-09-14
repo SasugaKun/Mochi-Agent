@@ -10,7 +10,7 @@ class DataControlImportStrategySourceContractTest {
     @Test
     fun unifiedImportPageUsesSharedStrategyControls() {
         val page = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/datacontrol/SettingsDataControlPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/datacontrol/SettingsDataControlPage.kt",
         ).readText().normalizeLines()
 
         assertEquals(3, Regex("""\bPillTabSwitcher\(""").findAll(page).count())
@@ -33,7 +33,7 @@ class DataControlImportStrategySourceContractTest {
     @Test
     fun externalReplaceRequiresTheSharedDestructiveConfirmation() {
         val page = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/datacontrol/SettingsDataControlPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/datacontrol/SettingsDataControlPage.kt",
         ).readText().normalizeLines()
 
         assertTrue(page.contains("pendingExternalReplace = true to finalIds"))
@@ -95,13 +95,13 @@ class DataControlImportStrategySourceContractTest {
     @Test
     fun nativePreviewAndOperationsUseNonDismissibleCircularProgress() {
         val page = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/datacontrol/SettingsDataControlPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/datacontrol/SettingsDataControlPage.kt",
         ).readText().normalizeLines()
         val dialog = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/datacontrol/NativeDataProgressDialog.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/datacontrol/NativeDataProgressDialog.kt",
         ).readText().normalizeLines()
         val manager = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/ImportExportManager.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/ImportExportManager.kt",
         ).readText().normalizeLines()
 
         assertTrue(
@@ -197,7 +197,7 @@ class DataControlImportStrategySourceContractTest {
     @Test
     fun nativePreviewSeparatesCategoryBlocksWithoutChangingInternalGap() {
         val page = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/datacontrol/SettingsDataControlPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/datacontrol/SettingsDataControlPage.kt",
         ).readText().normalizeLines()
 
         assertTrue(page.contains("Column(verticalArrangement = Arrangement.spacedBy(16.dp))"))
@@ -208,19 +208,19 @@ class DataControlImportStrategySourceContractTest {
     @Test
     fun unavailableResourcesUseDisabledLocalizedRenderingAndSuccessReporting() {
         val manager = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/ImportExportManager.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/ImportExportManager.kt",
         ).readText().normalizeLines()
         val autoBackup = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/AutoBackupManager.kt",
+            "app/src/main/java/com/mochiagent/app/data/AutoBackupManager.kt",
         ).readText().normalizeLines()
         val thumbnail = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/AttachmentThumbnail.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/AttachmentThumbnail.kt",
         ).readText().normalizeLines()
         val preview = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/bottombar/AttachmentPreviewRow.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/bottombar/AttachmentPreviewRow.kt",
         ).readText().normalizeLines()
         val bubble = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/UserMessageBubble.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/UserMessageBubble.kt",
         ).readText().normalizeLines()
 
         assertTrue(manager.contains("val result = exporter.export"))
@@ -270,7 +270,7 @@ class DataControlImportStrategySourceContractTest {
         val mainRoot = sourceFile("app/src/main/java")
         val legacyPage = File(
             mainRoot,
-            "com/newoether/agora/ui/settings/SettingsClaudeImportPage.kt",
+            "com/mochiagent/app/ui/settings/SettingsClaudeImportPage.kt",
         )
         assertFalse(legacyPage.exists())
 

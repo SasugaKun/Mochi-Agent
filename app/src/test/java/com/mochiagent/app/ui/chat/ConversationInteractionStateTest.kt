@@ -121,7 +121,7 @@ class ConversationInteractionStateTest {
     fun `reduced motion settles on exact glyph after estimated positioning`() {
         val source = File(
             mainSourceRoot(),
-            "com/newoether/agora/ui/chat/MessageList.kt",
+            "com/mochiagent/app/ui/chat/MessageList.kt",
         ).readText().replace("\r\n", "\n")
         val reducedMotionBlock = source
             .substringAfter("activeSearchMatch?.key,")

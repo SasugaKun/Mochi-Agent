@@ -11,7 +11,7 @@ class DeveloperDiagnosticsStreamingContractTest {
         val sourceRoot = locateMainSourceRoot()
         val httpSource = File(
             sourceRoot,
-            "com/newoether/agora/api/HttpClient.kt",
+            "com/mochiagent/app/api/HttpClient.kt",
         ).readText()
         val readLineBody = httpSource
             .substringAfter("fun readLine(): String?")
@@ -30,7 +30,7 @@ class DeveloperDiagnosticsStreamingContractTest {
         val sourceRoot = locateMainSourceRoot()
         val executorSource = File(
             sourceRoot,
-            "com/newoether/agora/viewmodel/ProviderPassEffectExecutor.kt",
+            "com/mochiagent/app/viewmodel/ProviderPassEffectExecutor.kt",
         ).readText()
         val consumer = executorSource
             .substringAfter("runner.run(")

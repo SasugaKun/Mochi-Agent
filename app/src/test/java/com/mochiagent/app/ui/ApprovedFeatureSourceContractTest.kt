@@ -10,11 +10,11 @@ class ApprovedFeatureSourceContractTest {
     @Test
     fun cacheCountsAreRetainedPresentationAndLedgerOwnsActions() {
         val root = sourceRoot()
-        val rag = source(root, "com/newoether/agora/viewmodel/RagManager.kt")
-        val settings = source(root, "com/newoether/agora/ui/settings/SettingsSearchPage.kt")
-        val dao = source(root, "com/newoether/agora/data/local/ChatDao.kt")
-        val entities = source(root, "com/newoether/agora/data/local/ChatEntities.kt")
-        val database = source(root, "com/newoether/agora/data/local/ChatDatabase.kt")
+        val rag = source(root, "com/mochiagent/app/viewmodel/RagManager.kt")
+        val settings = source(root, "com/mochiagent/app/ui/settings/SettingsSearchPage.kt")
+        val dao = source(root, "com/mochiagent/app/data/local/ChatDao.kt")
+        val entities = source(root, "com/mochiagent/app/data/local/ChatEntities.kt")
+        val database = source(root, "com/mochiagent/app/data/local/ChatDatabase.kt")
 
         assertFalse(rag.contains("init {\n        loadCacheCounts()"))
         assertTrue(rag.contains("fun startPostList()"))
@@ -63,11 +63,11 @@ class ApprovedFeatureSourceContractTest {
         val root = sourceRoot()
         val bottomBar = source(
             root,
-            "com/newoether/agora/ui/chat/bottombar/ChatBottomBar.kt",
+            "com/mochiagent/app/ui/chat/bottombar/ChatBottomBar.kt",
         )
         val sharedProgress = source(
             root,
-            "com/newoether/agora/ui/motion/MotionAwareProgressIndicators.kt",
+            "com/mochiagent/app/ui/motion/MotionAwareProgressIndicators.kt",
         )
 
         assertTrue(bottomBar.contains("val contextProgress by animateFloatAsState("))
@@ -81,58 +81,58 @@ class ApprovedFeatureSourceContractTest {
     @Test
     fun mediaViewerAndClipboardImagesUseTheApprovedBoundaries() {
         val root = sourceRoot()
-        val main = source(root, "com/newoether/agora/MainActivity.kt")
+        val main = source(root, "com/mochiagent/app/MainActivity.kt")
         val dialog = source(
             root,
-            "com/newoether/agora/ui/chat/FullScreenMediaPreviewDialog.kt",
+            "com/mochiagent/app/ui/chat/FullScreenMediaPreviewDialog.kt",
         )
         val composer = source(
             root,
-            "com/newoether/agora/ui/chat/bottombar/ChatBottomBar.kt",
+            "com/mochiagent/app/ui/chat/bottombar/ChatBottomBar.kt",
         )
         val composerState = source(
             root,
-            "com/newoether/agora/ui/chat/bottombar/ChatComposerState.kt",
+            "com/mochiagent/app/ui/chat/bottombar/ChatComposerState.kt",
         )
         val preview = source(
             root,
-            "com/newoether/agora/ui/chat/bottombar/AttachmentPreviewRow.kt",
+            "com/mochiagent/app/ui/chat/bottombar/AttachmentPreviewRow.kt",
         )
         val storedMessage = source(
             root,
-            "com/newoether/agora/ui/chat/message/UserMessageBubble.kt",
+            "com/mochiagent/app/ui/chat/message/UserMessageBubble.kt",
         )
         val viewer = source(
             root,
-            "com/newoether/agora/ui/chat/FullScreenMediaViewer.kt",
+            "com/mochiagent/app/ui/chat/FullScreenMediaViewer.kt",
         )
         val payload = source(
             root,
-            "com/newoether/agora/viewmodel/MessagePayloadBuilder.kt",
+            "com/mochiagent/app/viewmodel/MessagePayloadBuilder.kt",
         )
         val generationManager = source(
             root,
-            "com/newoether/agora/viewmodel/GenerationManager.kt",
+            "com/mochiagent/app/viewmodel/GenerationManager.kt",
         )
         val imageProcessor = source(
             root,
-            "com/newoether/agora/viewmodel/ImageProcessor.kt",
+            "com/mochiagent/app/viewmodel/ImageProcessor.kt",
         )
         val sendButton = source(
             root,
-            "com/newoether/agora/ui/chat/bottombar/ComposerSendButton.kt",
+            "com/mochiagent/app/ui/chat/bottombar/ComposerSendButton.kt",
         )
         val submission = source(
             root,
-            "com/newoether/agora/viewmodel/ConversationComposerSubmissionController.kt",
+            "com/mochiagent/app/viewmodel/ConversationComposerSubmissionController.kt",
         )
         val chatApp = source(
             root,
-            "com/newoether/agora/ui/chat/ChatApp.kt",
+            "com/mochiagent/app/ui/chat/ChatApp.kt",
         )
         val imageActions = source(
             root,
-            "com/newoether/agora/ui/chat/ImageActions.kt",
+            "com/mochiagent/app/ui/chat/ImageActions.kt",
         )
 
         assertTrue(main.contains("FullScreenMediaPreviewDialog("))
@@ -193,7 +193,7 @@ class ApprovedFeatureSourceContractTest {
         assertFalse(sendButton.contains("LocalSoftwareKeyboardController"))
         assertFalse(chatApp.contains("BindDirectAcceptedComposerEffects"))
         assertFalse(
-            File(root, "com/newoether/agora/ui/chat/DirectAcceptedComposerEffect.kt").exists(),
+            File(root, "com/mochiagent/app/ui/chat/DirectAcceptedComposerEffect.kt").exists(),
         )
         assertFalse(submission.contains("DirectAcceptedComposerEffect"))
         assertFalse(submission.contains("directAcceptedEffects"))
@@ -244,43 +244,43 @@ class ApprovedFeatureSourceContractTest {
         val root = sourceRoot()
         val fade = source(
             root,
-            "com/newoether/agora/ui/chat/message/IncrementalStreamingMarkdown.kt",
+            "com/mochiagent/app/ui/chat/message/IncrementalStreamingMarkdown.kt",
         )
         val assets = source(
             root,
-            "com/newoether/agora/ui/chat/message/MessageBubbleAssets.kt",
+            "com/mochiagent/app/ui/chat/message/MessageBubbleAssets.kt",
         )
         val timeline = source(
             root,
-            "com/newoether/agora/ui/chat/message/MessageItemTimeline.kt",
+            "com/mochiagent/app/ui/chat/message/MessageItemTimeline.kt",
         )
         val tool = source(
             root,
-            "com/newoether/agora/ui/chat/message/ToolResultContent.kt",
+            "com/mochiagent/app/ui/chat/message/ToolResultContent.kt",
         )
         val stableText = source(
             root,
-            "com/newoether/agora/ui/chat/message/StableStreamingText.kt",
+            "com/mochiagent/app/ui/chat/message/StableStreamingText.kt",
         )
         val mutedText = source(
             root,
-            "com/newoether/agora/ui/chat/message/StreamingMutedText.kt",
+            "com/mochiagent/app/ui/chat/message/StreamingMutedText.kt",
         )
         val lifecycle = source(
             root,
-            "com/newoether/agora/ui/chat/message/GenerationLifecycleMotion.kt",
+            "com/mochiagent/app/ui/chat/message/GenerationLifecycleMotion.kt",
         )
         val messageItem = source(
             root,
-            "com/newoether/agora/ui/chat/message/MessageItem.kt",
+            "com/mochiagent/app/ui/chat/message/MessageItem.kt",
         )
         val assistant = source(
             root,
-            "com/newoether/agora/ui/chat/message/AssistantMessageContent.kt",
+            "com/mochiagent/app/ui/chat/message/AssistantMessageContent.kt",
         )
         val segments = source(
             root,
-            "com/newoether/agora/ui/chat/message/MessageItemSegments.kt",
+            "com/mochiagent/app/ui/chat/message/MessageItemSegments.kt",
         )
 
         assertTrue(fade.contains("fun streamingTailAnnotatedString("))
@@ -367,7 +367,7 @@ class ApprovedFeatureSourceContractTest {
     @Test
     fun toolResultImageContextRowKeepsANonProtocolIdPrefix() {
         val root = sourceRoot()
-        val toolMessages = source(root, "com/newoether/agora/api/util/ToolMessages.kt")
+        val toolMessages = source(root, "com/mochiagent/app/api/util/ToolMessages.kt")
 
         // The API-only image-context row must never start with a protocol prefix: provider
         // serializers branch on tool_/result_ and would silently drop the row (view_image
@@ -379,12 +379,12 @@ class ApprovedFeatureSourceContractTest {
     @Test
     fun providerCollectorsBindStableDiagnosticRequestKinds() {
         val root = sourceRoot()
-        val title = source(root, "com/newoether/agora/viewmodel/ConversationTitleGenerator.kt")
-        val transcription = source(root, "com/newoether/agora/viewmodel/TranscriptionManager.kt")
-        val generation = source(root, "com/newoether/agora/viewmodel/GenerationManager.kt")
+        val title = source(root, "com/mochiagent/app/viewmodel/ConversationTitleGenerator.kt")
+        val transcription = source(root, "com/mochiagent/app/viewmodel/TranscriptionManager.kt")
+        val generation = source(root, "com/mochiagent/app/viewmodel/GenerationManager.kt")
         val providerPass = source(
             root,
-            "com/newoether/agora/viewmodel/ProviderPassEffectExecutor.kt",
+            "com/mochiagent/app/viewmodel/ProviderPassEffectExecutor.kt",
         )
 
         assertTrue(title.contains("requestKind = \"title\""))
@@ -406,15 +406,15 @@ class ApprovedFeatureSourceContractTest {
     @Test
     fun toolResultImageTranscriptionFollowsTheGenericDeclaredRule() {
         val root = sourceRoot()
-        val toolProvider = source(root, "com/newoether/agora/tool/ToolProvider.kt")
-        val shell = source(root, "com/newoether/agora/tool/ShellToolProvider.kt")
+        val toolProvider = source(root, "com/mochiagent/app/tool/ToolProvider.kt")
+        val shell = source(root, "com/mochiagent/app/tool/ShellToolProvider.kt")
         val executor = source(
             root,
-            "com/newoether/agora/viewmodel/GenerationToolBatchEffectExecutor.kt",
+            "com/mochiagent/app/viewmodel/GenerationToolBatchEffectExecutor.kt",
         )
-        val manager = source(root, "com/newoether/agora/viewmodel/GenerationManager.kt")
-        val transcription = source(root, "com/newoether/agora/viewmodel/TranscriptionManager.kt")
-        val contracts = source(root, "com/newoether/agora/viewmodel/GenerationContracts.kt")
+        val manager = source(root, "com/mochiagent/app/viewmodel/GenerationManager.kt")
+        val transcription = source(root, "com/mochiagent/app/viewmodel/TranscriptionManager.kt")
+        val contracts = source(root, "com/mochiagent/app/viewmodel/GenerationContracts.kt")
 
         // The tool declares intent via the result flag; the executor implements one generic
         // rule with no tool-name routing; the transcriber travels the per-generation call
@@ -430,16 +430,16 @@ class ApprovedFeatureSourceContractTest {
         assertTrue(manager.contains("transcriptionManager.describeImageWithProgress("))
         assertTrue(transcription.contains("suspend fun describeImageWithProgress("))
         assertFalse(contracts.contains("toolImageTranscriber"))
-        val toolMessages = source(root, "com/newoether/agora/api/util/ToolMessages.kt")
+        val toolMessages = source(root, "com/mochiagent/app/api/util/ToolMessages.kt")
         assertTrue(toolMessages.contains("--- Image Transcription: view_image ---"))
         assertTrue(toolMessages.contains("transcriptionDescriptionsForBatch("))
         // Defect pins (owner device reports): transcription-enabled models never receive raw
         // images; the compact group title stays the transcription label while TOOL_CALLING;
         // the thinking block always announces the transcribing state.
-        val pathBuilder = source(root, "com/newoether/agora/viewmodel/GenerationApiPathBuilder.kt")
+        val pathBuilder = source(root, "com/mochiagent/app/viewmodel/GenerationApiPathBuilder.kt")
         val titles = source(
             root,
-            "com/newoether/agora/ui/chat/message/ThinkingSegmentPresentation.kt",
+            "com/mochiagent/app/ui/chat/message/ThinkingSegmentPresentation.kt",
         )
         assertTrue(pathBuilder.contains("includeImages = !request.context.imageTranscriptionEnabled"))
         assertTrue(titles.contains("segs.any { it.type == \"transcription\" }"))
@@ -451,11 +451,11 @@ class ApprovedFeatureSourceContractTest {
         val root = sourceRoot()
         val presentation = source(
             root,
-            "com/newoether/agora/ui/chat/message/ToolPresentation.kt",
+            "com/mochiagent/app/ui/chat/message/ToolPresentation.kt",
         )
         val labels = source(
             root,
-            "com/newoether/agora/ui/chat/message/MessageItemToolLabels.kt",
+            "com/mochiagent/app/ui/chat/message/MessageItemToolLabels.kt",
         )
 
         // isActive drives the group loading bar; a detached background job must not occupy it.
@@ -474,9 +474,9 @@ class ApprovedFeatureSourceContractTest {
     @Test
     fun ratingPaddingBelongsOnlyToDialogHost() {
         val root = sourceRoot()
-        val mainActivity = source(root, "com/newoether/agora/MainActivity.kt")
-        val rating = source(root, "com/newoether/agora/ui/settings/RatingForm.kt")
-        val settings = source(root, "com/newoether/agora/ui/settings/SettingsAboutPage.kt")
+        val mainActivity = source(root, "com/mochiagent/app/MainActivity.kt")
+        val rating = source(root, "com/mochiagent/app/ui/settings/RatingForm.kt")
+        val settings = source(root, "com/mochiagent/app/ui/settings/SettingsAboutPage.kt")
 
         assertTrue(rating.contains("Modifier.clearFocusOnTap()"))
         assertFalse(rating.contains(".padding(horizontal = 24.dp, vertical = 20.dp)"))
@@ -493,7 +493,7 @@ class ApprovedFeatureSourceContractTest {
         val root = sourceRoot()
         val timeline = source(
             root,
-            "com/newoether/agora/ui/chat/message/MessageItemTimeline.kt",
+            "com/mochiagent/app/ui/chat/message/MessageItemTimeline.kt",
         )
 
         assertTrue(timeline.contains("if (idx < segs.lastIndex)"))
@@ -506,7 +506,7 @@ class ApprovedFeatureSourceContractTest {
     fun toolCallCreationPublishesTheCompleteBatchBeforeExecution() {
         val manager = source(
             sourceRoot(),
-            "com/newoether/agora/viewmodel/GenerationManager.kt",
+            "com/mochiagent/app/viewmodel/GenerationManager.kt",
         )
         val updateBranch = manager
             .substringAfter("is StreamEvent.ToolCallUpdate -> {")
@@ -529,7 +529,7 @@ class ApprovedFeatureSourceContractTest {
     fun developerCapturePageKeepsApprovedUiAndCanonicalOwners() {
         val capture = source(
             sourceRoot(),
-            "com/newoether/agora/ui/settings/SettingsDeveloperCapturePage.kt",
+            "com/mochiagent/app/ui/settings/SettingsDeveloperCapturePage.kt",
         )
         val modes = capture
             .substringAfter("private enum class CaptureViewMode {")
@@ -678,7 +678,7 @@ class ApprovedFeatureSourceContractTest {
     fun developerPageContainsOnlyApprovedHierarchyAndLocalCaptureRoute() {
         val page = source(
             sourceRoot(),
-            "com/newoether/agora/ui/settings/SettingsDeveloperPage.kt",
+            "com/mochiagent/app/ui/settings/SettingsDeveloperPage.kt",
         )
         val developerIndex = page.indexOf("R.string.settings_developer")
         val captureIndex = page.indexOf("R.string.developer_options_capture")
@@ -815,9 +815,9 @@ class ApprovedFeatureSourceContractTest {
     @Test
     fun generationAdmissionWaitsForProviderLifecycle() {
         val root = sourceRoot()
-        val builder = source(root, "com/newoether/agora/viewmodel/GenerationRequestBuilder.kt")
-        val generation = source(root, "com/newoether/agora/viewmodel/MessageGenerationController.kt")
-        val queuedDrain = source(root, "com/newoether/agora/viewmodel/QueuedGuidanceDrainExecutor.kt")
+        val builder = source(root, "com/mochiagent/app/viewmodel/GenerationRequestBuilder.kt")
+        val generation = source(root, "com/mochiagent/app/viewmodel/MessageGenerationController.kt")
+        val queuedDrain = source(root, "com/mochiagent/app/viewmodel/QueuedGuidanceDrainExecutor.kt")
 
         val admission = builder
             .substringAfter("internal suspend fun captureAdmissionSnapshot(")
@@ -841,9 +841,9 @@ class ApprovedFeatureSourceContractTest {
     @Test
     fun debugProviderUsesHiddenExactGenerationBoundary() {
         val root = sourceRoot()
-        val provider = source(root, "com/newoether/agora/api/DebugProvider.kt")
-        val registry = source(root, "com/newoether/agora/viewmodel/ProviderRegistry.kt")
-        val builder = source(root, "com/newoether/agora/viewmodel/GenerationRequestBuilder.kt")
+        val provider = source(root, "com/mochiagent/app/api/DebugProvider.kt")
+        val registry = source(root, "com/mochiagent/app/viewmodel/ProviderRegistry.kt")
+        val builder = source(root, "com/mochiagent/app/viewmodel/GenerationRequestBuilder.kt")
 
         assertTrue(provider.contains("class DebugProvider : LlmProvider"))
         assertTrue(provider.contains("StreamEvent.HostedToolCallUpdate("))
@@ -883,18 +883,18 @@ class ApprovedFeatureSourceContractTest {
     @Test
     fun debugVisibilityAndModelFallbackStayOnTheCanonicalChatBoundary() {
         val root = sourceRoot()
-        val chatApp = source(root, "com/newoether/agora/ui/chat/ChatApp.kt")
+        val chatApp = source(root, "com/mochiagent/app/ui/chat/ChatApp.kt")
         val selection = source(
             root,
-            "com/newoether/agora/viewmodel/ConversationSelectionController.kt",
+            "com/mochiagent/app/viewmodel/ConversationSelectionController.kt",
         )
         val generation = source(
             root,
-            "com/newoether/agora/viewmodel/MessageGenerationController.kt",
+            "com/mochiagent/app/viewmodel/MessageGenerationController.kt",
         )
         val workspace = source(
             root,
-            "com/newoether/agora/viewmodel/ConversationWorkspaceStore.kt",
+            "com/mochiagent/app/viewmodel/ConversationWorkspaceStore.kt",
         )
 
         assertTrue(chatApp.contains("viewModel.settings.developerOptionsEnabled.collectAsState()"))
@@ -906,11 +906,11 @@ class ApprovedFeatureSourceContractTest {
         assertEquals(2, Regex("modelAliases = chatModelAliases").findAll(chatApp).count())
 
         listOf(
-            "com/newoether/agora/ui/settings/SettingsModelsPage.kt",
-            "com/newoether/agora/ui/settings/SettingsContextPage.kt",
-            "com/newoether/agora/ui/settings/SettingsTitleGenPage.kt",
-            "com/newoether/agora/ui/settings/SettingsTranscriptionPage.kt",
-            "com/newoether/agora/ui/tasks/TaskEditorPage.kt",
+            "com/mochiagent/app/ui/settings/SettingsModelsPage.kt",
+            "com/mochiagent/app/ui/settings/SettingsContextPage.kt",
+            "com/mochiagent/app/ui/settings/SettingsTitleGenPage.kt",
+            "com/mochiagent/app/ui/settings/SettingsTranscriptionPage.kt",
+            "com/mochiagent/app/ui/tasks/TaskEditorPage.kt",
         ).forEach { path ->
             val surface = source(root, path)
             assertFalse("Debug leaked into $path", surface.contains("DebugProvider"))
@@ -949,17 +949,17 @@ class ApprovedFeatureSourceContractTest {
     @Test
     fun skillsAreSavedCatalogToolsWithRequestResolvedPromptAndNoActiveSkill() {
         val root = sourceRoot()
-        val manager = source(root, "com/newoether/agora/data/SkillManager.kt")
-        val provider = source(root, "com/newoether/agora/tool/SkillToolProvider.kt")
+        val manager = source(root, "com/mochiagent/app/data/SkillManager.kt")
+        val provider = source(root, "com/mochiagent/app/tool/SkillToolProvider.kt")
         val builder = source(
             root,
-            "com/newoether/agora/viewmodel/GenerationRequestBuilder.kt",
+            "com/mochiagent/app/viewmodel/GenerationRequestBuilder.kt",
         )
-        val exporter = source(root, "com/newoether/agora/data/DataExporter.kt")
-        val importer = source(root, "com/newoether/agora/data/DataImporter.kt")
+        val exporter = source(root, "com/mochiagent/app/data/DataExporter.kt")
+        val importer = source(root, "com/mochiagent/app/data/DataImporter.kt")
         val settings = source(
             root,
-            "com/newoether/agora/ui/settings/SettingsSkillsPage.kt",
+            "com/mochiagent/app/ui/settings/SettingsSkillsPage.kt",
         )
 
         assertTrue(manager.contains("File(context.filesDir, \"skill_db\")"))

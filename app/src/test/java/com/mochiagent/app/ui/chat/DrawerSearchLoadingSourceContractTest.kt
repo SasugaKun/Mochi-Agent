@@ -137,7 +137,7 @@ class DrawerSearchLoadingSourceContractTest {
     }
 
     private fun source(relative: String): String =
-        File(mainSourceRoot(), "com/newoether/agora/$relative").readText()
+        File(mainSourceRoot(), "com/mochiagent/app/$relative").readText()
 
     private fun mainSourceRoot(): File = locate("app/src/main/java")
 

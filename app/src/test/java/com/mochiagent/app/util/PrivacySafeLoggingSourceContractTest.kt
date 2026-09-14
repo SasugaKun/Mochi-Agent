@@ -69,17 +69,17 @@ class PrivacySafeLoggingSourceContractTest {
     fun `generation diagnostics do not log request content private endpoints or raw responses`() {
         val sourceRoot = locateMainSourceRoot()
         val protectedSources = listOf(
-            "com/newoether/agora/api/HttpClient.kt",
-            "com/newoether/agora/api/LlamaChatEngine.kt",
-            "com/newoether/agora/api/LlamaEngine.kt",
-            "com/newoether/agora/api/anthropic/AnthropicProvider.kt",
-            "com/newoether/agora/api/gemini/GeminiProvider.kt",
-            "com/newoether/agora/api/local/LocalProvider.kt",
-            "com/newoether/agora/api/ollama/OllamaProvider.kt",
-            "com/newoether/agora/api/openai/BaseOpenAiProvider.kt",
-            "com/newoether/agora/api/util/MessageConverter.kt",
-            "com/newoether/agora/automation/TaskManager.kt",
-            "com/newoether/agora/data/AutoBackupManager.kt",
+            "com/mochiagent/app/api/HttpClient.kt",
+            "com/mochiagent/app/api/LlamaChatEngine.kt",
+            "com/mochiagent/app/api/LlamaEngine.kt",
+            "com/mochiagent/app/api/anthropic/AnthropicProvider.kt",
+            "com/mochiagent/app/api/gemini/GeminiProvider.kt",
+            "com/mochiagent/app/api/local/LocalProvider.kt",
+            "com/mochiagent/app/api/ollama/OllamaProvider.kt",
+            "com/mochiagent/app/api/openai/BaseOpenAiProvider.kt",
+            "com/mochiagent/app/api/util/MessageConverter.kt",
+            "com/mochiagent/app/automation/TaskManager.kt",
+            "com/mochiagent/app/data/AutoBackupManager.kt",
         ).associateWith { relativePath ->
             extractDebugLogCalls(File(sourceRoot, relativePath).readText())
         }

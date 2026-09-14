@@ -361,7 +361,7 @@ class SettingsResourceContractTest {
     private fun readSettingsSource(fileName: String): String {
         val file = File(
             locateResourceDirectory().parentFile,
-            "java/com/newoether/agora/ui/settings/$fileName",
+            "java/com/mochiagent/app/ui/settings/$fileName",
         )
         assertTrue("Missing Settings source: ${file.path}", file.isFile)
         return file.readText()

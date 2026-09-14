@@ -11,19 +11,19 @@ class ProviderContextSnapshotWiringTest {
         val root = locateMainSourceRoot()
         val dao = File(
             root,
-            "com/newoether/agora/data/local/ChatProviderContextDao.kt",
+            "com/mochiagent/app/data/local/ChatProviderContextDao.kt",
         ).readText()
         val repository = File(
             root,
-            "com/newoether/agora/data/repository/ConversationRepository.kt",
+            "com/mochiagent/app/data/repository/ConversationRepository.kt",
         ).readText()
         val container = File(
             root,
-            "com/newoether/agora/di/AppContainer.kt",
+            "com/mochiagent/app/di/AppContainer.kt",
         ).readText()
         val loader = File(
             root,
-            "com/newoether/agora/viewmodel/DurableSelectedContextLoader.kt",
+            "com/mochiagent/app/viewmodel/DurableSelectedContextLoader.kt",
         ).readText()
 
         assertTrue("@Transaction must protect the topology snapshot", "@Transaction" in dao)

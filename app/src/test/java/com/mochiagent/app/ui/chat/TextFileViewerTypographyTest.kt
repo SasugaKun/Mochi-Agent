@@ -35,7 +35,7 @@ class TextFileViewerTypographyTest {
     @Test
     fun `full screen text viewer uses app font bold headings and scaled markdown tiers`() {
         val source = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/TextFileViewer.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/TextFileViewer.kt",
         )
 
         assertFalse(source.contains("MonoFamily"))

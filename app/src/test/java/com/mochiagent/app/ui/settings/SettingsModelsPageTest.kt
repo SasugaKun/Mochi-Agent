@@ -124,10 +124,10 @@ class SettingsModelsPageTest {
     @Test
     fun `sync card owns progress feedback and settings host emits no progress snackbar`() {
         val page = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsModelsPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsModelsPage.kt",
         )
         val settingsHost = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsScreen.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsScreen.kt",
         )
         val syncCard = page.substringAfter("item(key = \"sync\")")
             .substringBefore("item(key = \"auto_search\")")
@@ -167,7 +167,7 @@ class SettingsModelsPageTest {
 
     @Test
     fun `both model editors keep provider choice local until the explicit save action`() {
-        val page = sourceFile("app/src/main/java/com/newoether/agora/ui/settings/SettingsModelsPage.kt")
+        val page = sourceFile("app/src/main/java/com/mochiagent/app/ui/settings/SettingsModelsPage.kt")
         assertEquals(2, Regex("ModelProviderNameSwitch\\(showProviderName\\)").findAll(page).count())
         assertEquals(3, Regex("showProviderName = showProviderName,").findAll(page).count())
         val rename = page.substringAfter("showModelAliasDialog?.let { model ->")

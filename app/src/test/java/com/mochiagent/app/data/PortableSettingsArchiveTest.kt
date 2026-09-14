@@ -45,8 +45,8 @@ class PortableSettingsArchiveTest {
         assertEquals(2, writes.size)
         coVerify(exactly = 2) { manager.resetPortableSettingsForImport() }
         val root = locateDirectory("app/src/main/java", "src/main/java")
-        val export = File(root, "com/newoether/agora/data/PortableSettingsArchive.kt").readText()
-        val storage = File(root, "com/newoether/agora/data/SettingsManager.kt").readText()
+        val export = File(root, "com/mochiagent/app/data/PortableSettingsArchive.kt").readText()
+        val storage = File(root, "com/mochiagent/app/data/SettingsManager.kt").readText()
         assertTrue(export.contains("putEncoded(\"modelProviderNames\", sm.modelProviderNames.first())"))
         assertTrue(storage.contains("prefs[MODEL_PROVIDER_NAMES_JSON] = \"{}\""))
         assertTrue(storage.contains("produceMigrations = { listOf(modelProviderNamesMigration) }"))
@@ -55,7 +55,7 @@ class PortableSettingsArchiveTest {
     @Test
     fun amoledIsDefaultOffPortableAndAvailableInEveryTheme() {
         val root = locateDirectory("app/src/main/java", "src/main/java")
-        fun source(path: String) = File(root, "com/newoether/agora/$path").readText()
+        fun source(path: String) = File(root, "com/mochiagent/app/$path").readText()
         val manager = source("data/SettingsManager.kt")
         val archive = source("data/PortableSettingsArchive.kt")
         val repository = source("data/repository/SettingsRepository.kt")
@@ -135,13 +135,13 @@ class PortableSettingsArchiveTest {
         val mainRoot = locateDirectory("app/src/main/java", "src/main/java")
         fun source(path: String) = File(mainRoot, path).readText().replace("\r\n", "\n")
 
-        val schema = source("com/newoether/agora/data/SettingsPreferenceSchema.kt")
-        val manager = source("com/newoether/agora/data/SettingsManager.kt")
-        val repository = source("com/newoether/agora/data/repository/SettingsRepository.kt")
-        val archive = source("com/newoether/agora/data/PortableSettingsArchive.kt")
-        val settingsPage = source("com/newoether/agora/ui/settings/SettingsSearchPage.kt")
-        val startup = source("com/newoether/agora/viewmodel/StartupMaintenanceCoordinator.kt")
-        val rag = source("com/newoether/agora/viewmodel/RagManager.kt")
+        val schema = source("com/mochiagent/app/data/SettingsPreferenceSchema.kt")
+        val manager = source("com/mochiagent/app/data/SettingsManager.kt")
+        val repository = source("com/mochiagent/app/data/repository/SettingsRepository.kt")
+        val archive = source("com/mochiagent/app/data/PortableSettingsArchive.kt")
+        val settingsPage = source("com/mochiagent/app/ui/settings/SettingsSearchPage.kt")
+        val startup = source("com/mochiagent/app/viewmodel/StartupMaintenanceCoordinator.kt")
+        val rag = source("com/mochiagent/app/viewmodel/RagManager.kt")
 
         assertTrue(schema.contains("booleanPreferencesKey(\"show_uncached_notification\")"))
         assertTrue(manager.contains("it[SHOW_UNCACHED_NOTIFICATION] ?: true"))

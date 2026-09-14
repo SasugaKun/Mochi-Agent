@@ -211,7 +211,7 @@ class SemanticIndexDaoTest {
     @Test
     fun roomQueriesCarryQueueAndCompletionFences() {
         val source = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/local/SemanticIndexLedger.kt",
+            "app/src/main/java/com/mochiagent/app/data/local/SemanticIndexLedger.kt",
         ).replace("\r\n", "\n")
         val delete = source.substringBefore("suspend fun deleteMatchingWork")
             .substringAfterLast("@Query(")

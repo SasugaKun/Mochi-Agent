@@ -83,16 +83,16 @@ class Phase32DirectDotSourceContractTest {
     }
 
     private fun messageSource(name: String): String =
-        File(mainSourceRoot(), "com/newoether/agora/ui/chat/message/$name").readText()
+        File(mainSourceRoot(), "com/mochiagent/app/ui/chat/message/$name").readText()
 
     private fun messageSourceOrEmpty(name: String): String =
-        File(mainSourceRoot(), "com/newoether/agora/ui/chat/message/$name")
+        File(mainSourceRoot(), "com/mochiagent/app/ui/chat/message/$name")
             .takeIf(File::isFile)
             ?.readText()
             .orEmpty()
 
     private fun chatSource(name: String): String =
-        File(mainSourceRoot(), "com/newoether/agora/ui/chat/$name").readText()
+        File(mainSourceRoot(), "com/mochiagent/app/ui/chat/$name").readText()
 
     private fun mainSourceRoot(): File = locate("app/src/main/java")
 

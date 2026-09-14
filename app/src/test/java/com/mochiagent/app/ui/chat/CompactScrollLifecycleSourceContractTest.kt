@@ -10,11 +10,11 @@ class CompactScrollLifecycleSourceContractTest {
         val root = locateMainSourceRoot()
         val generationController = File(
             root,
-            "com/newoether/agora/viewmodel/MessageGenerationController.kt",
+            "com/mochiagent/app/viewmodel/MessageGenerationController.kt",
         ).readText()
         val scrollCoordinator = File(
             root,
-            "com/newoether/agora/ui/chat/ChatScrollCoordinator.kt",
+            "com/mochiagent/app/ui/chat/ChatScrollCoordinator.kt",
         ).readText()
 
         assertTrue(

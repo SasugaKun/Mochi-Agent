@@ -18,7 +18,7 @@ class StreamingMarkdownMessageSourceContractTest {
         val segments = source(root, "MessageItemSegments.kt")
         val interaction = source(root, "StreamingMarkdownInteractionCommitGate.kt")
         val lifecycle = source(root, "GenerationLifecycleMotion.kt")
-        val selectionHost = File(root, "com/newoether/agora/util/NoOpBringIntoView.kt").readText()
+        val selectionHost = File(root, "com/mochiagent/app/util/NoOpBringIntoView.kt").readText()
 
         assertTrue(wrapper.contains("internal fun StreamingMarkdownMessage("))
         assertTrue(wrapper.contains("IncrementalStreamingMarkdownContent("))
@@ -239,7 +239,7 @@ class StreamingMarkdownMessageSourceContractTest {
     }
 
     private fun source(root: File, name: String): String =
-        File(root, "com/newoether/agora/ui/chat/message/$name").readText()
+        File(root, "com/mochiagent/app/ui/chat/message/$name").readText()
 
     private fun locateMainSourceRoot(): File {
         var directory = File(requireNotNull(System.getProperty("user.dir"))).absoluteFile

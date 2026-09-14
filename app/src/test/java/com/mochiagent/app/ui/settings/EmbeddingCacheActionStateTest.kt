@@ -88,7 +88,7 @@ class EmbeddingCacheActionStateTest {
             .first { File(it, "app/src/main").isDirectory }
         val source = File(
             root,
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsSearchPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsSearchPage.kt",
         ).readText().replace("\r\n", "\n")
 
         assertTrue(source.contains("Modifier.size(cacheActionSize)"))
@@ -131,7 +131,7 @@ class EmbeddingCacheActionStateTest {
             .first { File(it, "app/src/main").isDirectory }
         val source = File(
             root,
-            "app/src/main/java/com/newoether/agora/ui/settings/RatingForm.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/RatingForm.kt",
         ).readText().replace("\r\n", "\n")
         assertTrue(source.contains("Modifier.fillMaxWidth().height(52.dp)"))
         val action = source.substringAfter("targetState = submitting to submitted,")
