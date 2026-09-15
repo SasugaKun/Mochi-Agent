@@ -11,7 +11,7 @@ class DeveloperOptionsPersistenceContractTest {
     fun `developer feature keys remain stable`() {
         val schemaSource = File(
             locateMainSourceRoot(),
-            "com/newoether/agora/data/SettingsPreferenceSchema.kt",
+            "com/mochiagent/app/data/SettingsPreferenceSchema.kt",
         ).readText()
         assertTrue(
             schemaSource.contains(
@@ -30,7 +30,7 @@ class DeveloperOptionsPersistenceContractTest {
         val sourceRoot = locateMainSourceRoot()
         val portableSource = File(
             sourceRoot,
-            "com/newoether/agora/data/PortableSettingsArchive.kt",
+            "com/mochiagent/app/data/PortableSettingsArchive.kt",
         ).readText()
         assertFalse(
             "Developer Options must not enter portable settings archives",
@@ -43,7 +43,7 @@ class DeveloperOptionsPersistenceContractTest {
 
         val managerSource = File(
             sourceRoot,
-            "com/newoether/agora/data/SettingsManager.kt",
+            "com/mochiagent/app/data/SettingsManager.kt",
         ).readText()
         val resetBody = managerSource
             .substringAfter("suspend fun resetPortableSettingsForImport()")
@@ -62,7 +62,7 @@ class DeveloperOptionsPersistenceContractTest {
     fun `debug model is gated and reset in the developer mode edit`() {
         val managerSource = File(
             locateMainSourceRoot(),
-            "com/newoether/agora/data/SettingsManager.kt",
+            "com/mochiagent/app/data/SettingsManager.kt",
         ).readText()
         val debugFlow = managerSource
             .substringAfter("val debugModelEnabled: Flow<Boolean>")

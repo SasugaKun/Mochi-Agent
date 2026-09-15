@@ -46,7 +46,7 @@ class ChatNavigationEffectsTest {
         while (true) {
             val candidate = File(
                 directory,
-                "app/src/main/java/com/newoether/agora/ui/chat/$name",
+                "app/src/main/java/com/mochiagent/app/ui/chat/$name",
             )
             if (candidate.isFile) return candidate.readText().replace("\r\n", "\n")
             directory = directory.parentFile ?: error("Unable to locate $name")

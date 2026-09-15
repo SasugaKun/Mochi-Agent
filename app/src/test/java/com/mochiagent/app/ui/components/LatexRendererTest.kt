@@ -218,7 +218,7 @@ class LatexRendererTest {
     fun displayLatexUsesSharedHorizontalOverflowViewport() {
         val source = File(
             locateMainSourceRoot(),
-            "com/newoether/agora/ui/chat/message/MessageBubbleAssets.kt",
+            "com/mochiagent/app/ui/chat/message/MessageBubbleAssets.kt",
         ).readText()
         val component = source
             .substringAfter("private fun ScrollableDisplayLatexImage(")
@@ -244,7 +244,7 @@ class LatexRendererTest {
     fun markdownPreprocessingUsesIndexedSourceAccessWithoutFullSuffixSlices() {
         val source = File(
             locateMainSourceRoot(),
-            "com/newoether/agora/ui/components/LatexRenderer.kt",
+            "com/mochiagent/app/ui/components/LatexRenderer.kt",
         ).readText()
         val scanners = source
             .substringAfter("fun String.escapeDollarForMarkdown()")

@@ -10,7 +10,7 @@ import org.junit.Test
 class ApplicationUiSourceContractTest {
     @Test
     fun `onboarding primary action keeps fixed geometry without custom press motion`() {
-        val source = sourceFile("app/src/main/java/com/newoether/agora/ui/onboarding/WelcomeScreen.kt")
+        val source = sourceFile("app/src/main/java/com/mochiagent/app/ui/onboarding/WelcomeScreen.kt")
 
         assertFalse(source.contains("val continueInteractionSource"))
         assertFalse(source.contains("collectIsPressedAsState()"))
@@ -28,7 +28,7 @@ class ApplicationUiSourceContractTest {
 
     @Test
     fun `onboarding dot indicator keeps constant row height without spring`() {
-        val source = sourceFile("app/src/main/java/com/newoether/agora/ui/onboarding/WelcomeScreen.kt")
+        val source = sourceFile("app/src/main/java/com/mochiagent/app/ui/onboarding/WelcomeScreen.kt")
 
         // Fixed outer slot: selection changes never shift the whole indicator vertically.
         assertTrue(source.contains(
@@ -45,7 +45,7 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `Skills settings mirrors the saved Memory file presentation`() {
         val source = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsSkillsPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsSkillsPage.kt",
         )
 
         assertTrue(source.contains("var skillsLoaded"))
@@ -86,8 +86,8 @@ class ApplicationUiSourceContractTest {
 
     @Test
     fun `Skills entry uses Extension while Markdown import uses Memory Description icon`() {
-        val settings = sourceFile("app/src/main/java/com/newoether/agora/ui/settings/SettingsScreen.kt")
-        val page = sourceFile("app/src/main/java/com/newoether/agora/ui/settings/SettingsSkillsPage.kt")
+        val settings = sourceFile("app/src/main/java/com/mochiagent/app/ui/settings/SettingsScreen.kt")
+        val page = sourceFile("app/src/main/java/com/mochiagent/app/ui/settings/SettingsSkillsPage.kt")
         val strings = sourceFile("app/src/main/res/values/strings.xml")
 
         assertTrue(settings.contains("R.string.settings_skills, R.string.settings_skills_desc, Icons.Default.Extension"))
@@ -127,7 +127,7 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `PDF page bitmaps are initialized opaque white before both framework render paths`() {
         val source = sourceFile(
-            "app/src/main/java/com/newoether/agora/util/PdfPageRenderer.kt",
+            "app/src/main/java/com/mochiagent/app/util/PdfPageRenderer.kt",
         )
 
         assertTrue(source.contains("private const val MAX_PAGES = 5"))
@@ -192,16 +192,16 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `chat bottom dropdowns keep twenty four dp icons and adaptive provider color`() {
         val attachment = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/bottombar/AttachmentAddMenu.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/bottombar/AttachmentAddMenu.kt",
         )
         val bottomBar = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/bottombar/ChatBottomBar.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/bottombar/ChatBottomBar.kt",
         )
         val components = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/bottombar/ChatBottomBarComponents.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/bottombar/ChatBottomBarComponents.kt",
         )
         val userMessage = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/UserMessageBubble.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/UserMessageBubble.kt",
         )
 
         assertTrue(components.contains("CHAT_DROPDOWN_MENU_ICON_SIZE_DP = 24"))
@@ -221,8 +221,8 @@ class ApplicationUiSourceContractTest {
 
     @Test
     fun `normal chat bottom fade reveals the live background instead of painting a static color`() {
-        val source = sourceFile("app/src/main/java/com/newoether/agora/ui/chat/ChatApp.kt")
-        val masks = sourceFile("app/src/main/java/com/newoether/agora/util/GradientBlur.kt")
+        val source = sourceFile("app/src/main/java/com/mochiagent/app/ui/chat/ChatApp.kt")
+        val masks = sourceFile("app/src/main/java/com/mochiagent/app/util/GradientBlur.kt")
 
         assertTrue(source.contains("val expandedGradientTopPaddingPx = with(density) { 20.dp.toPx() }"))
         assertTrue(source.contains("val gradientWidthPx = with(density) { 40.dp.toPx() }"))
@@ -262,9 +262,9 @@ class ApplicationUiSourceContractTest {
 
     @Test
     fun `MCP page entry refresh is background single flight without polling`() {
-        val page = sourceFile("app/src/main/java/com/newoether/agora/ui/settings/SettingsMcpPage.kt")
-        val viewModel = sourceFile("app/src/main/java/com/newoether/agora/viewmodel/ChatViewModel.kt")
-        val registry = sourceFile("app/src/main/java/com/newoether/agora/mcp/McpRegistry.kt")
+        val page = sourceFile("app/src/main/java/com/mochiagent/app/ui/settings/SettingsMcpPage.kt")
+        val viewModel = sourceFile("app/src/main/java/com/mochiagent/app/viewmodel/ChatViewModel.kt")
+        val registry = sourceFile("app/src/main/java/com/mochiagent/app/mcp/McpRegistry.kt")
 
         assertTrue(page.contains("LaunchedEffect(Unit)"))
         assertTrue(page.contains("viewModel.refreshMcpServersOnPageEntry()"))
@@ -285,10 +285,10 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `ordinary segment detail does not repeat message error while Compact keeps its error`() {
         val messageItem = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/MessageItem.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/MessageItem.kt",
         )
         val segmentDetail = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/SegmentDetailSheet.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/SegmentDetailSheet.kt",
         )
 
         val compactDetail = messageItem.substringAfter("if (showCompactDetail) {")
@@ -303,7 +303,7 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `generation error and stopped bars share neutral body text presentation`() {
         val source = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/GenerationErrorBar.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/GenerationErrorBar.kt",
         )
         val errorBar = source
             .substringAfter("internal fun GenerationErrorBar(")
@@ -321,10 +321,10 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `chat dropdown menus share the same sixteen dp rounded shape`() {
         val bottomBar = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/bottombar/ChatBottomBar.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/bottombar/ChatBottomBar.kt",
         )
         val compactDialog = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/ChatManualCompactDialog.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/ChatManualCompactDialog.kt",
         )
 
         assertTrue(bottomBar.contains(
@@ -346,10 +346,10 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `editing a user message scrolls its turn to focus with reduced motion fallback`() {
         val messageList = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/MessageList.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/MessageList.kt",
         )
         val scrollActor = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/RobustLazyListScroll.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/RobustLazyListScroll.kt",
         )
         val editFocus = messageList
             .substringAfter("LaunchedEffect(\n        conversationId,\n        editingMessageId,")
@@ -370,7 +370,7 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `user edit size owner includes the branch selector`() {
         val user = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/UserMessageBubble.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/UserMessageBubble.kt",
         )
         val stableBlock = user
             .substringAfter("Column(\n        horizontalAlignment = Alignment.End,")
@@ -383,8 +383,8 @@ class ApplicationUiSourceContractTest {
 
     @Test
     fun `both fork entry points require the shared confirmation dialog`() {
-        val source = sourceFile("app/src/main/java/com/newoether/agora/ui/chat/ChatApp.kt")
-        val dialogs = sourceFile("app/src/main/java/com/newoether/agora/ui/chat/ChatDialogs.kt")
+        val source = sourceFile("app/src/main/java/com/mochiagent/app/ui/chat/ChatApp.kt")
+        val dialogs = sourceFile("app/src/main/java/com/mochiagent/app/ui/chat/ChatDialogs.kt")
         val topMenuEntry = source
             .substringAfter("onForkConversation = {")
             .substringBefore("onShareConversation = {")
@@ -417,13 +417,13 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `image transcription progress does not impersonate provider retry activity`() {
         val transcription = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/TranscriptionManager.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/TranscriptionManager.kt",
         )
         val generation = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/GenerationManager.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/GenerationManager.kt",
         )
         val assistant = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/AssistantMessageContent.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/AssistantMessageContent.kt",
         )
 
         assertFalse(transcription.contains("retryText ="))
@@ -510,7 +510,7 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `transcription chooser lists concrete models only while nullable summary stays compatible`() {
         val source = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsTranscriptionPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsTranscriptionPage.kt",
         )
         val chooser = source
             .substringAfter("if (showModelDialog)")
@@ -525,7 +525,7 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `Appearance uses semantic groups and leading visuals for every setting row`() {
         val appearance = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsAppearancePage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsAppearancePage.kt",
         )
         val groupKeys = listOf(
             "appearance_theme_color",
@@ -589,21 +589,21 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `Appearance removes dead detailed token usage UI threading but keeps persistence compatibility`() {
         val appearance = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsAppearancePage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsAppearancePage.kt",
         )
-        val chatApp = sourceFile("app/src/main/java/com/newoether/agora/ui/chat/ChatApp.kt")
-        val messageList = sourceFile("app/src/main/java/com/newoether/agora/ui/chat/MessageList.kt")
+        val chatApp = sourceFile("app/src/main/java/com/mochiagent/app/ui/chat/ChatApp.kt")
+        val messageList = sourceFile("app/src/main/java/com/mochiagent/app/ui/chat/MessageList.kt")
         val messageItem = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/MessageItem.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/MessageItem.kt",
         )
         val assistant = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/AssistantMessageContent.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/AssistantMessageContent.kt",
         )
         val settings = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/SettingsManager.kt",
+            "app/src/main/java/com/mochiagent/app/data/SettingsManager.kt",
         )
         val archive = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/PortableSettingsArchive.kt",
+            "app/src/main/java/com/mochiagent/app/data/PortableSettingsArchive.kt",
         )
 
         listOf(appearance, chatApp, messageList, messageItem, assistant).forEach {
@@ -619,17 +619,17 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `Stick to bottom is portable and gates only generation auto follow`() {
         val appearance = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsAppearancePage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsAppearancePage.kt",
         )
-        val chatApp = sourceFile("app/src/main/java/com/newoether/agora/ui/chat/ChatApp.kt")
+        val chatApp = sourceFile("app/src/main/java/com/mochiagent/app/ui/chat/ChatApp.kt")
         val settings = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/SettingsManager.kt",
+            "app/src/main/java/com/mochiagent/app/data/SettingsManager.kt",
         )
         val repository = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/repository/SettingsRepository.kt",
+            "app/src/main/java/com/mochiagent/app/data/repository/SettingsRepository.kt",
         )
         val archive = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/PortableSettingsArchive.kt",
+            "app/src/main/java/com/mochiagent/app/data/PortableSettingsArchive.kt",
         )
         val availability = chatApp
             .substringAfter("val streamingFollowAvailability =")
@@ -652,15 +652,15 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `Thinking display policy is configurable only outside Timeline and auto expands Grouped cards`() {
         val appearance = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsAppearancePage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsAppearancePage.kt",
         )
         val assistant = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/AssistantMessageContent.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/AssistantMessageContent.kt",
         )
         val messageItem = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/MessageItem.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/MessageItem.kt",
         )
-        val model = sourceFile("app/src/main/java/com/newoether/agora/model/ChatMessage.kt")
+        val model = sourceFile("app/src/main/java/com/mochiagent/app/model/ChatMessage.kt")
 
         assertTrue(model.contains("fun isAvailableFor(toolCallDisplayMode: String?)"))
         assertTrue(model.contains("fun effectiveMode("))
@@ -687,7 +687,7 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `Responses API rows use the API Format JSON icon`() {
         val provider = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsProviderDetailPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsProviderDetailPage.kt",
         )
 
         assertTrue(provider.contains("SettingsIconContent(icon = Icons.Default.DataObject)"))
@@ -705,7 +705,7 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `provider base URL placeholder stays separate from its stored default`() {
         val provider = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsProviderDetailPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsProviderDetailPage.kt",
         )
 
         assertTrue(provider.contains(
@@ -723,13 +723,13 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `Settings destination rows omit redundant arrows without losing behavior`() {
         val home = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsScreen.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsScreen.kt",
         )
         val shell = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsShellPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsShellPage.kt",
         )
         val provider = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsProviderPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsProviderPage.kt",
         )
 
         assertFalse(home.contains("KeyboardArrowRight"))
@@ -755,9 +755,9 @@ class ApplicationUiSourceContractTest {
 
     @Test
     fun `shell confirmation code surface provides standalone Markdown locals`() {
-        val main = sourceFile("app/src/main/java/com/newoether/agora/MainActivity.kt")
+        val main = sourceFile("app/src/main/java/com/mochiagent/app/MainActivity.kt")
         val assets = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/MessageBubbleAssets.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/MessageBubbleAssets.kt",
         )
         val codeBlock = assets
             .substringAfter("internal fun ChatMarkdownCodeBlock(")
@@ -772,24 +772,24 @@ class ApplicationUiSourceContractTest {
 
     @Test
     fun `every full screen viewer uses shared spatial entrance and exit with reduced motion fallback`() {
-        val source = sourceFile("app/src/main/java/com/newoether/agora/MainActivity.kt")
+        val source = sourceFile("app/src/main/java/com/mochiagent/app/MainActivity.kt")
         val mediaViewer = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/FullScreenMediaViewer.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/FullScreenMediaViewer.kt",
         )
         val mediaDialog = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/FullScreenMediaPreviewDialog.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/FullScreenMediaPreviewDialog.kt",
         )
         val imageActions = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/ImageActions.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/ImageActions.kt",
         )
         val videoPlayer = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/VideoPlayer.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/VideoPlayer.kt",
         )
         val texturePlayerLayout = sourceFile(
             "app/src/main/res/layout/view_texture_video_player.xml",
         )
         val dialogWindow = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/components/DialogWindowEdgeToEdge.kt",
+            "app/src/main/java/com/mochiagent/app/ui/components/DialogWindowEdgeToEdge.kt",
         )
 
         assertTrue(source.contains(
@@ -861,13 +861,13 @@ class ApplicationUiSourceContractTest {
 
     @Test
     fun `notification permission waits for Chat and gates initial composer focus until dismissal`() {
-        val main = sourceFile("app/src/main/java/com/newoether/agora/MainActivity.kt")
-        val chat = sourceFile("app/src/main/java/com/newoether/agora/ui/chat/ChatApp.kt")
+        val main = sourceFile("app/src/main/java/com/mochiagent/app/MainActivity.kt")
+        val chat = sourceFile("app/src/main/java/com/mochiagent/app/ui/chat/ChatApp.kt")
         val interactionEffects = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/ChatAppInteractionEffects.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/ChatAppInteractionEffects.kt",
         )
         val service = sourceFile(
-            "app/src/main/java/com/newoether/agora/service/AgoraForegroundService.kt",
+            "app/src/main/java/com/mochiagent/app/service/AgoraForegroundService.kt",
         )
         val activityStartup = main
             .substringAfter("override fun onCreate(savedInstanceState: Bundle?)")
@@ -924,7 +924,7 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `Automation groups exact execution and battery optimization in every locale`() {
         val page = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/settings/SettingsAutomationPage.kt",
+            "app/src/main/java/com/mochiagent/app/ui/settings/SettingsAutomationPage.kt",
         )
         val manifest = sourceFile("app/src/main/AndroidManifest.xml")
         val backgroundGroup = page
@@ -968,7 +968,7 @@ class ApplicationUiSourceContractTest {
     @Test
     fun `Once date picker keeps the Material modal height without taking over mode or IME`() {
         val source = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/tasks/TaskEditorSupportingComponents.kt",
+            "app/src/main/java/com/mochiagent/app/ui/tasks/TaskEditorSupportingComponents.kt",
         )
         val picker = source
             .substringAfter("internal fun TaskDatePickerDialog(")

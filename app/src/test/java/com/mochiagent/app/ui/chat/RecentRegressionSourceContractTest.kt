@@ -220,7 +220,7 @@ class RecentRegressionSourceContractTest {
     }
 
     private fun source(relativePath: String): String =
-        File(mainSourceRoot(), "com/newoether/agora/$relativePath")
+        File(mainSourceRoot(), "com/mochiagent/app/$relativePath")
             .readText()
             .replace("\r\n", "\n")
 

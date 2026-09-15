@@ -8,12 +8,12 @@ import org.junit.Test
 class Phase28UiSourceContractTest {
     @Test
     fun `direct dots require no LazyColumn or window coordinate owner`() {
-        val list = source("com/newoether/agora/ui/chat/MessageList.kt")
+        val list = source("com/mochiagent/app/ui/chat/MessageList.kt")
         val assistant = messageSource("AssistantMessageContent.kt")
         val retry = messageSource("RetryActivityIndicator.kt")
         val follower = File(
             mainSourceRoot(),
-            "com/newoether/agora/ui/chat/message/InlineActivityDotFollower.kt",
+            "com/mochiagent/app/ui/chat/message/InlineActivityDotFollower.kt",
         )
 
         assertFalse(follower.exists())
@@ -30,7 +30,7 @@ class Phase28UiSourceContractTest {
 
     @Test
     fun `user bubble and Select Text share exact 1_1x user-body line height`() {
-        val type = source("com/newoether/agora/ui/theme/Type.kt")
+        val type = source("com/mochiagent/app/ui/theme/Type.kt")
         val userBubble = messageSource("UserMessageBubble.kt")
         val detail = messageSource("SegmentDetailSheet.kt")
 
@@ -48,7 +48,7 @@ class Phase28UiSourceContractTest {
     }
 
     private fun messageSource(name: String): String =
-        source("com/newoether/agora/ui/chat/message/$name")
+        source("com/mochiagent/app/ui/chat/message/$name")
 
     private fun source(relative: String): String =
         File(mainSourceRoot(), relative).readText()

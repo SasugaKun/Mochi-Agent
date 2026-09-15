@@ -417,7 +417,7 @@ class GenerationStreamingSegmentsTest {
     fun `generation answer accumulation uses one mutable buffer and immutable snapshots`() {
         val source = File(
             locateMainSourceRoot(),
-            "com/newoether/agora/viewmodel/GenerationManager.kt",
+            "com/mochiagent/app/viewmodel/GenerationManager.kt",
         ).readText()
 
         assertEquals(1, Regex("""val totalText = StringBuilder\(\)""").findAll(source).count())

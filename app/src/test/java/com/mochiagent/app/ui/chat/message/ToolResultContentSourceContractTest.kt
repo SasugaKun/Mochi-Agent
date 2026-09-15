@@ -212,7 +212,7 @@ class ToolResultContentSourceContractTest {
     }
 
     private fun source(root: File, name: String): String =
-        File(root, "com/newoether/agora/ui/chat/message/$name")
+        File(root, "com/mochiagent/app/ui/chat/message/$name")
             .readText()
             .replace("\r\n", "\n")
 

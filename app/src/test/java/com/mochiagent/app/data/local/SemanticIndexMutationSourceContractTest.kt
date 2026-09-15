@@ -12,10 +12,10 @@ class SemanticIndexMutationSourceContractTest {
     @Test
     fun sourceEligibilityAndGraphChangesShareTheOwningRoomTransaction() {
         val ledger = source(
-            "app/src/main/java/com/newoether/agora/data/local/SemanticIndexLedger.kt",
+            "app/src/main/java/com/mochiagent/app/data/local/SemanticIndexLedger.kt",
         )
         val repository = source(
-            "app/src/main/java/com/newoether/agora/data/repository/ConversationRepository.kt",
+            "app/src/main/java/com/mochiagent/app/data/repository/ConversationRepository.kt",
         )
 
         val sourceMutation = ledger.section(
@@ -85,10 +85,10 @@ class SemanticIndexMutationSourceContractTest {
     @Test
     fun embeddingCommitRejectsStaleResultsAndModelLifecycleIsAtomic() {
         val ledger = source(
-            "app/src/main/java/com/newoether/agora/data/local/SemanticIndexLedger.kt",
+            "app/src/main/java/com/mochiagent/app/data/local/SemanticIndexLedger.kt",
         )
         val chatDao = source(
-            "app/src/main/java/com/newoether/agora/data/local/ChatDao.kt",
+            "app/src/main/java/com/mochiagent/app/data/local/ChatDao.kt",
         )
 
         val commit = ledger.section(
@@ -136,13 +136,13 @@ class SemanticIndexMutationSourceContractTest {
     @Test
     fun nativeImportFreezesModelsBeforeItsGraphTransaction() {
         val dataImporter = source(
-            "app/src/main/java/com/newoether/agora/data/DataImporter.kt",
+            "app/src/main/java/com/mochiagent/app/data/DataImporter.kt",
         )
         val graphImporter = source(
-            "app/src/main/java/com/newoether/agora/data/NativeConversationGraphImporter.kt",
+            "app/src/main/java/com/mochiagent/app/data/NativeConversationGraphImporter.kt",
         )
         val container = source(
-            "app/src/main/java/com/newoether/agora/di/AppContainer.kt",
+            "app/src/main/java/com/mochiagent/app/di/AppContainer.kt",
         )
 
         val conversations = dataImporter.substringAfter(
@@ -189,13 +189,13 @@ class SemanticIndexMutationSourceContractTest {
     @Test
     fun durableWorkerIsTheOnlyEmbeddingGeneratorAndCarriesFingerprintLock() {
         val worker = source(
-            "app/src/main/java/com/newoether/agora/service/EmbeddingCacheWorker.kt",
+            "app/src/main/java/com/mochiagent/app/service/EmbeddingCacheWorker.kt",
         )
         val rag = source(
-            "app/src/main/java/com/newoether/agora/viewmodel/RagManager.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/RagManager.kt",
         )
         val locks = source(
-            "app/src/main/java/com/newoether/agora/data/EmbeddingCacheLocks.kt",
+            "app/src/main/java/com/mochiagent/app/data/EmbeddingCacheLocks.kt",
         )
 
         assertFalse(worker.contains("EmbeddingCacheLocks.forModel(modelId).withLock"))
@@ -257,10 +257,10 @@ class SemanticIndexMutationSourceContractTest {
     @Test
     fun canonicalWorkerConsumesBoundedLedgerWorkAndFullReconcilePages() {
         val worker = source(
-            "app/src/main/java/com/newoether/agora/service/EmbeddingCacheWorker.kt",
+            "app/src/main/java/com/mochiagent/app/service/EmbeddingCacheWorker.kt",
         )
         val ledger = source(
-            "app/src/main/java/com/newoether/agora/data/local/SemanticIndexLedger.kt",
+            "app/src/main/java/com/mochiagent/app/data/local/SemanticIndexLedger.kt",
         )
 
         assertFalse(worker.contains("getIndexableMessageCount("))
@@ -390,7 +390,7 @@ class SemanticIndexMutationSourceContractTest {
         ))
 
         val importer = source(
-            "app/src/main/java/com/newoether/agora/data/DataImporter.kt",
+            "app/src/main/java/com/mochiagent/app/data/DataImporter.kt",
         )
         val reconciliation = importer.section(
             "private suspend fun reconcileImportedEmbeddingModels(",
@@ -424,7 +424,7 @@ class SemanticIndexMutationSourceContractTest {
     @Test
     fun headlessAutomationWakesAutoCacheForBothDurableTurnRows() {
         val engine = source(
-            "app/src/main/java/com/newoether/agora/automation/TaskExecutionEngine.kt",
+            "app/src/main/java/com/mochiagent/app/automation/TaskExecutionEngine.kt",
         )
         val generationManager = engine.section(
             "private val generationManager = GenerationManager(",

@@ -239,7 +239,7 @@ class MaintenanceDebtDaoTest {
     @Test
     fun roomQueriesCarryOrderingStaleAndRevisionFences() {
         val source = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/local/MaintenanceDebt.kt",
+            "app/src/main/java/com/mochiagent/app/data/local/MaintenanceDebt.kt",
         ).replace("\r\n", "\n")
         val candidates = source.substringBefore("suspend fun getClaimCandidates")
             .substringAfterLast("@Query(")

@@ -9,7 +9,7 @@ class DataExporterSnapshotSourceContractTest {
     @Test
     fun roomTransactionCapturesTheCompleteConversationGraphWithPagedMessages() {
         val exporter = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/DataExporter.kt",
+            "app/src/main/java/com/mochiagent/app/data/DataExporter.kt",
         )
         val capture = section(
             exporter,
@@ -48,7 +48,7 @@ class DataExporterSnapshotSourceContractTest {
     @Test
     fun destinationMediaAndFinalArchiveIoStartAfterTheRoomSnapshotReturns() {
         val exporter = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/DataExporter.kt",
+            "app/src/main/java/com/mochiagent/app/data/DataExporter.kt",
         )
         val capture = section(
             exporter,
@@ -76,7 +76,7 @@ class DataExporterSnapshotSourceContractTest {
     @Test
     fun spoolConsumersNeverQueryRoomAndCleanupCoversFailureAndCancellation() {
         val exporter = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/DataExporter.kt",
+            "app/src/main/java/com/mochiagent/app/data/DataExporter.kt",
         )
         val mediaPlan = section(
             exporter,
@@ -115,16 +115,16 @@ class DataExporterSnapshotSourceContractTest {
     @Test
     fun manualAndAutomaticExportsReceiveTheProcessDatabase() {
         val exporter = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/DataExporter.kt",
+            "app/src/main/java/com/mochiagent/app/data/DataExporter.kt",
         )
         val manager = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/ImportExportManager.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/ImportExportManager.kt",
         )
         val backup = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/AutoBackupManager.kt",
+            "app/src/main/java/com/mochiagent/app/data/AutoBackupManager.kt",
         )
         val container = sourceFile(
-            "app/src/main/java/com/newoether/agora/di/AppContainer.kt",
+            "app/src/main/java/com/mochiagent/app/di/AppContainer.kt",
         )
 
         assertTrue(exporter.contains("private val database: ChatDatabase"))

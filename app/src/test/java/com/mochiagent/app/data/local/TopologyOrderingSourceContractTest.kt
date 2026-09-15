@@ -9,7 +9,7 @@ class TopologyOrderingSourceContractTest {
     fun topologySnapshotAndFlowUseTimestampAndIdOrdering() {
         val source = File(
             locateMainSourceRoot(),
-            "com/newoether/agora/data/local/ChatProviderContextDao.kt",
+            "com/mochiagent/app/data/local/ChatProviderContextDao.kt",
         ).readText()
 
         assertEquals(2, "ORDER BY timestamp ASC, id ASC".toRegex().findAll(source).count())

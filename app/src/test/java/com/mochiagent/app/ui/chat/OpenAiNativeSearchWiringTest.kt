@@ -9,14 +9,14 @@ class OpenAiNativeSearchWiringTest {
     @Test
     fun `chat and generation paths wire native OpenAI search end to end`() {
         val root = locateMainSourceRoot()
-        val chatApp = File(root, "com/newoether/agora/ui/chat/ChatApp.kt").readText()
+        val chatApp = File(root, "com/mochiagent/app/ui/chat/ChatApp.kt").readText()
         val requestBuilder = File(
             root,
-            "com/newoether/agora/viewmodel/GenerationRequestBuilder.kt",
+            "com/mochiagent/app/viewmodel/GenerationRequestBuilder.kt",
         ).readText()
         val contracts = File(
             root,
-            "com/newoether/agora/viewmodel/GenerationContracts.kt",
+            "com/mochiagent/app/viewmodel/GenerationContracts.kt",
         ).readText()
 
         listOf(
@@ -39,30 +39,30 @@ class OpenAiNativeSearchWiringTest {
     @Test
     fun `chat and generation paths wire compact threshold and provider transport`() {
         val root = locateMainSourceRoot()
-        val chatApp = File(root, "com/newoether/agora/ui/chat/ChatApp.kt").readText()
+        val chatApp = File(root, "com/mochiagent/app/ui/chat/ChatApp.kt").readText()
         val requestBuilder = File(
             root,
-            "com/newoether/agora/viewmodel/GenerationRequestBuilder.kt",
+            "com/mochiagent/app/viewmodel/GenerationRequestBuilder.kt",
         ).readText()
         val contracts = File(
             root,
-            "com/newoether/agora/viewmodel/GenerationContracts.kt",
+            "com/mochiagent/app/viewmodel/GenerationContracts.kt",
         ).readText()
         val compactor = File(
             root,
-            "com/newoether/agora/viewmodel/ContextCompactor.kt",
+            "com/mochiagent/app/viewmodel/ContextCompactor.kt",
         ).readText()
         val compactController = File(
             root,
-            "com/newoether/agora/viewmodel/ConversationCompactController.kt",
+            "com/mochiagent/app/viewmodel/ConversationCompactController.kt",
         ).readText()
         val standardLauncher = File(
             root,
-            "com/newoether/agora/viewmodel/StandardGenerationContinuationLauncher.kt",
+            "com/mochiagent/app/viewmodel/StandardGenerationContinuationLauncher.kt",
         ).readText()
         val boundLauncher = File(
             root,
-            "com/newoether/agora/viewmodel/BoundRunGenerationLauncher.kt",
+            "com/mochiagent/app/viewmodel/BoundRunGenerationLauncher.kt",
         ).readText()
 
         assertTrue(
@@ -105,22 +105,22 @@ class OpenAiNativeSearchWiringTest {
     @Test
     fun `conversation service tier stays wired and standalone OpenAI search stays retired`() {
         val root = locateMainSourceRoot()
-        val chatApp = File(root, "com/newoether/agora/ui/chat/ChatApp.kt").readText()
+        val chatApp = File(root, "com/mochiagent/app/ui/chat/ChatApp.kt").readText()
         val serviceTier = File(
             root,
-            "com/newoether/agora/ui/chat/OpenAiConversationServiceTier.kt",
+            "com/mochiagent/app/ui/chat/OpenAiConversationServiceTier.kt",
         ).readText()
         val settingsContracts = File(
             root,
-            "com/newoether/agora/data/SettingsContracts.kt",
+            "com/mochiagent/app/data/SettingsContracts.kt",
         ).readText()
         val webSearchProvider = File(
             root,
-            "com/newoether/agora/tool/WebSearchToolProvider.kt",
+            "com/mochiagent/app/tool/WebSearchToolProvider.kt",
         ).readText()
         val settingsPage = File(
             root,
-            "com/newoether/agora/ui/settings/SettingsWebSearchPage.kt",
+            "com/mochiagent/app/ui/settings/SettingsWebSearchPage.kt",
         ).readText().replace("\r\n", "\n")
 
         listOf(
@@ -158,8 +158,8 @@ class OpenAiNativeSearchWiringTest {
     @Test
     fun `fork menu label is punctuation free without changing confirmation title`() {
         val root = locateMainSourceRoot()
-        val topBar = File(root, "com/newoether/agora/ui/chat/ChatTopBar.kt").readText()
-        val dialogs = File(root, "com/newoether/agora/ui/chat/ChatDialogs.kt").readText()
+        val topBar = File(root, "com/mochiagent/app/ui/chat/ChatTopBar.kt").readText()
+        val dialogs = File(root, "com/mochiagent/app/ui/chat/ChatDialogs.kt").readText()
         val resourceRoot = File(requireNotNull(root.parentFile), "res")
         val localizedMenus = resourceRoot.listFiles()
             .orEmpty()
@@ -187,7 +187,7 @@ class OpenAiNativeSearchWiringTest {
     @Test
     fun `top bar keeps final title layout stable behind a rounded clip boundary`() {
         val root = locateMainSourceRoot()
-        val topBar = File(root, "com/newoether/agora/ui/chat/ChatTopBar.kt")
+        val topBar = File(root, "com/mochiagent/app/ui/chat/ChatTopBar.kt")
             .readText()
             .replace("\r\n", "\n")
         val normalBar = topBar

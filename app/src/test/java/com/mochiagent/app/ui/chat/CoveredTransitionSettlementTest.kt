@@ -112,7 +112,7 @@ class CoveredTransitionSettlementTest {
     fun coveredSettlementKeepsItsBoundedTimeoutAndChecksBottomBeforeEmptyContent() {
         val source = File(
             locateMainSourceRoot(),
-            "com/newoether/agora/ui/chat/ChatScrollCoordinator.kt",
+            "com/mochiagent/app/ui/chat/ChatScrollCoordinator.kt",
         ).readText()
         val settleStart = source.indexOf("private suspend fun settleCoveredTransition(")
         val settleEnd = source.indexOf("@Composable", settleStart)

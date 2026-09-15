@@ -112,7 +112,7 @@ class SettingsResourceContractTest {
             "developer_options_clear_diagnostics_action" to "Clear Diagnostic Session",
             "developer_options_capture_scroll_to_top" to "Scroll to Top",
             "developer_options_capture_scroll_to_bottom" to "Scroll to Bottom",
-            "developer_options_export_share_title" to "Share Agora Diagnostic Bundle",
+            "developer_options_export_share_title" to "Share Mochi Agent Diagnostic Bundle",
             "skills_empty" to "No Skills Yet",
         )
         expected.forEach { (key, title) ->
@@ -361,7 +361,7 @@ class SettingsResourceContractTest {
     private fun readSettingsSource(fileName: String): String {
         val file = File(
             locateResourceDirectory().parentFile,
-            "java/com/newoether/agora/ui/settings/$fileName",
+            "java/com/mochiagent/app/ui/settings/$fileName",
         )
         assertTrue("Missing Settings source: ${file.path}", file.isFile)
         return file.readText()

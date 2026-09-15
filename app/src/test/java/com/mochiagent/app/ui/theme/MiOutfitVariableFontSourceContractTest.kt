@@ -18,7 +18,7 @@ class MiOutfitVariableFontSourceContractTest {
     @Test
     fun `default type family uses one variable font with five explicit weights`() {
         val source = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/theme/Type.kt",
+            "app/src/main/java/com/mochiagent/app/ui/theme/Type.kt",
         ).readText()
         val expectedWeights = listOf(
             "ExtraLight",

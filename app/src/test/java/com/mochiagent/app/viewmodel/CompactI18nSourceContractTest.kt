@@ -9,12 +9,12 @@ import org.junit.Test
 class CompactI18nSourceContractTest {
     @Test
     fun `compact domain emits semantic failures and both consumers share one localized resolver`() {
-        val model = sourceFile("app/src/main/java/com/newoether/agora/viewmodel/ContextCompactor.kt")
-        val controller = sourceFile("app/src/main/java/com/newoether/agora/viewmodel/ConversationCompactController.kt")
-        val compactUi = sourceFile("app/src/main/java/com/newoether/agora/viewmodel/ConversationCompactUiCoordinator.kt")
-        val chat = sourceFile("app/src/main/java/com/newoether/agora/viewmodel/ChatViewModel.kt")
-        val generation = sourceFile("app/src/main/java/com/newoether/agora/viewmodel/MessageGenerationController.kt")
-        val presentation = sourceFile("app/src/main/java/com/newoether/agora/viewmodel/CompactFailurePresentation.kt")
+        val model = sourceFile("app/src/main/java/com/mochiagent/app/viewmodel/ContextCompactor.kt")
+        val controller = sourceFile("app/src/main/java/com/mochiagent/app/viewmodel/ConversationCompactController.kt")
+        val compactUi = sourceFile("app/src/main/java/com/mochiagent/app/viewmodel/ConversationCompactUiCoordinator.kt")
+        val chat = sourceFile("app/src/main/java/com/mochiagent/app/viewmodel/ChatViewModel.kt")
+        val generation = sourceFile("app/src/main/java/com/mochiagent/app/viewmodel/MessageGenerationController.kt")
+        val presentation = sourceFile("app/src/main/java/com/mochiagent/app/viewmodel/CompactFailurePresentation.kt")
 
         assertTrue(model.contains("enum class CompactFailureReason"))
         assertTrue(model.contains("val reason: CompactFailureReason"))
@@ -33,7 +33,7 @@ class CompactI18nSourceContractTest {
 
     @Test
     fun `compact chrome is resource backed and every supported locale covers app owned copy`() {
-        val item = sourceFile("app/src/main/java/com/newoether/agora/ui/chat/message/MessageItem.kt")
+        val item = sourceFile("app/src/main/java/com/mochiagent/app/ui/chat/message/MessageItem.kt")
         assertFalse(item.contains("private const val CompactStreamingStatusText"))
         assertFalse(item.contains("private const val CompactErrorText"))
         assertFalse(item.contains("private const val CompactStoppedText"))

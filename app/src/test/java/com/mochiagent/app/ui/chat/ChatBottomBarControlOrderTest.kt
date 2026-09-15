@@ -11,7 +11,7 @@ class ChatBottomBarControlOrderTest {
     fun `OpenAI Search appears directly below Service Tier`() {
         val source = File(
             locateMainSourceRoot(),
-            "com/newoether/agora/ui/chat/bottombar/ChatBottomBar.kt",
+            "com/mochiagent/app/ui/chat/bottombar/ChatBottomBar.kt",
         ).readText()
         val serviceTierCondition = "if (openAiServiceTierAvailable && isModelValid)"
         val nativeSearchCondition = "if (openAiWebSearchAvailable && isModelValid)"
@@ -35,7 +35,7 @@ class ChatBottomBarControlOrderTest {
 
     @Test
     fun `Low Context Mode disables only capability controls`() {
-        val source = mainSource("com/newoether/agora/ui/chat/bottombar/ChatBottomBar.kt")
+        val source = mainSource("com/mochiagent/app/ui/chat/bottombar/ChatBottomBar.kt")
         val lowContextCondition = "if (showLowContextMode)"
         val lowContextStart = source.indexOf(lowContextCondition)
         val lowContextBodyStart = source.indexOf('{', startIndex = lowContextStart)
@@ -67,10 +67,10 @@ class ChatBottomBarControlOrderTest {
 
     @Test
     fun `System Prompt and Local Provider default use their canonical enabled state`() {
-        val topBar = mainSource("com/newoether/agora/ui/chat/ChatTopBar.kt")
-        val chatApp = mainSource("com/newoether/agora/ui/chat/ChatApp.kt")
+        val topBar = mainSource("com/mochiagent/app/ui/chat/ChatTopBar.kt")
+        val chatApp = mainSource("com/mochiagent/app/ui/chat/ChatApp.kt")
         val settings = mainSource(
-            "com/newoether/agora/ui/settings/SettingsProviderDetailPage.kt",
+            "com/mochiagent/app/ui/settings/SettingsProviderDetailPage.kt",
         )
         val systemPromptItem = topBar
             .substringAfter("Text(stringResource(R.string.system_prompt))")
@@ -96,8 +96,8 @@ class ChatBottomBarControlOrderTest {
     }
     @Test
     fun `System Prompt create action stays left and uses the default template`() {
-        val dialogs = mainSource("com/newoether/agora/ui/chat/ChatDialogs.kt")
-        val host = mainSource("com/newoether/agora/ui/chat/ChatAppDialogHost.kt")
+        val dialogs = mainSource("com/mochiagent/app/ui/chat/ChatDialogs.kt")
+        val host = mainSource("com/mochiagent/app/ui/chat/ChatAppDialogHost.kt")
         val actions = dialogs
             .substringAfter("internal fun ChatSystemPromptDialog(")
             .substringBefore("internal fun ChatAdvancedSettingsDialog(")
@@ -118,10 +118,10 @@ class ChatBottomBarControlOrderTest {
 
     @Test
     fun `Top Bar and Bottom Bar share canonical context projection usage`() {
-        val chatApp = mainSource("com/newoether/agora/ui/chat/ChatApp.kt")
-        val chatViewModel = mainSource("com/newoether/agora/viewmodel/ChatViewModel.kt")
+        val chatApp = mainSource("com/mochiagent/app/ui/chat/ChatApp.kt")
+        val chatViewModel = mainSource("com/mochiagent/app/viewmodel/ChatViewModel.kt")
         val conversationUi = mainSource(
-            "com/newoether/agora/viewmodel/ConversationUiStateAssembler.kt",
+            "com/mochiagent/app/viewmodel/ConversationUiStateAssembler.kt",
         )
 
         assertEquals(2, chatApp.countOccurrences("contextUsage.estimatedTokenCount"))

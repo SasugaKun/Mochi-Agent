@@ -10,7 +10,7 @@ class ConversationSwitchSafetySourceContractTest {
     fun `conversation switch observes current projection without a fixed deadline`() {
         val source = File(
             locateMainSourceRoot(),
-            "com/newoether/agora/ui/chat/ChatScrollCoordinator.kt",
+            "com/mochiagent/app/ui/chat/ChatScrollCoordinator.kt",
         ).readText().replace("\r\n", "\n")
 
         assertFalse(
@@ -75,19 +75,19 @@ class ConversationSwitchSafetySourceContractTest {
         val root = locateMainSourceRoot()
         val sendButton = File(
             root,
-            "com/newoether/agora/ui/chat/bottombar/ComposerSendButton.kt",
+            "com/mochiagent/app/ui/chat/bottombar/ComposerSendButton.kt",
         ).readText().replace("\r\n", "\n")
         val submission = File(
             root,
-            "com/newoether/agora/viewmodel/ConversationComposerSubmissionController.kt",
+            "com/mochiagent/app/viewmodel/ConversationComposerSubmissionController.kt",
         ).readText().replace("\r\n", "\n")
         val generation = File(
             root,
-            "com/newoether/agora/viewmodel/MessageGenerationController.kt",
+            "com/mochiagent/app/viewmodel/MessageGenerationController.kt",
         ).readText().replace("\r\n", "\n")
         val drawer = File(
             root,
-            "com/newoether/agora/ui/chat/ChatDrawerContent.kt",
+            "com/mochiagent/app/ui/chat/ChatDrawerContent.kt",
         ).readText().replace("\r\n", "\n")
 
         assertTrue(
@@ -147,19 +147,19 @@ class ConversationSwitchSafetySourceContractTest {
     @Test
     fun `context rollout dims only classified rows through legacy message subtree alpha`() {
         val root = locateMainSourceRoot()
-        val chatApp = File(root, "com/newoether/agora/ui/chat/ChatApp.kt").readText().replace("\r\n", "\n")
-        val messageList = File(root, "com/newoether/agora/ui/chat/MessageList.kt").readText().replace("\r\n", "\n")
+        val chatApp = File(root, "com/mochiagent/app/ui/chat/ChatApp.kt").readText().replace("\r\n", "\n")
+        val messageList = File(root, "com/mochiagent/app/ui/chat/MessageList.kt").readText().replace("\r\n", "\n")
         val messageItem = File(
             root,
-            "com/newoether/agora/ui/chat/message/MessageItem.kt",
+            "com/mochiagent/app/ui/chat/message/MessageItem.kt",
         ).readText().replace("\r\n", "\n")
         val userBubble = File(
             root,
-            "com/newoether/agora/ui/chat/message/UserMessageBubble.kt",
+            "com/mochiagent/app/ui/chat/message/UserMessageBubble.kt",
         ).readText().replace("\r\n", "\n")
         val assistantContent = File(
             root,
-            "com/newoether/agora/ui/chat/message/AssistantMessageContent.kt",
+            "com/mochiagent/app/ui/chat/message/AssistantMessageContent.kt",
         ).readText().replace("\r\n", "\n")
 
         assertTrue(
@@ -232,7 +232,7 @@ class ConversationSwitchSafetySourceContractTest {
     fun `scroll to bottom visibility remembers every captured plain value`() {
         val source = File(
             locateMainSourceRoot(),
-            "com/newoether/agora/ui/chat/ChatApp.kt",
+            "com/mochiagent/app/ui/chat/ChatApp.kt",
         ).readText().replace("\r\n", "\n")
         val rememberStart = source.indexOf("val showButton by remember(")
         val derivedStart = source.indexOf("derivedStateOf", startIndex = rememberStart)

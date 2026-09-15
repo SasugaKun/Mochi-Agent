@@ -12,7 +12,7 @@ class DatabaseStartupSafetySourceContractTest {
         val root = locateMainSourceRoot()
         val databaseSource = File(
             root,
-            "com/newoether/agora/data/local/ChatDatabase.kt",
+            "com/mochiagent/app/data/local/ChatDatabase.kt",
         ).readText()
 
         assertFalse(databaseSource.contains("fallbackToDestructiveMigration"))
@@ -25,7 +25,7 @@ class DatabaseStartupSafetySourceContractTest {
             .map { it.relativeTo(root).invariantSeparatorsPath }
             .toSet()
         assertEquals(
-            setOf("com/newoether/agora/AgoraApplication.kt"),
+            setOf("com/mochiagent/app/AgoraApplication.kt"),
             directBuilders,
         )
     }
@@ -33,8 +33,8 @@ class DatabaseStartupSafetySourceContractTest {
     @Test
     fun `quit is non destructive and clean delegates to the process gate`() {
         val root = locateMainSourceRoot()
-        val activity = File(root, "com/newoether/agora/MainActivity.kt").readText()
-        val application = File(root, "com/newoether/agora/AgoraApplication.kt").readText()
+        val activity = File(root, "com/mochiagent/app/MainActivity.kt").readText()
+        val application = File(root, "com/mochiagent/app/AgoraApplication.kt").readText()
 
         assertTrue(activity.contains("TextButton(onClick = { activity?.finish() })"))
         assertTrue(activity.contains("agoraApplication.clearIncompatibleDatabase()"))
@@ -47,11 +47,11 @@ class DatabaseStartupSafetySourceContractTest {
     fun `background entry points wait for the same database gate`() {
         val root = locateMainSourceRoot()
         listOf(
-            "com/newoether/agora/service/AutoBackupWorker.kt",
-            "com/newoether/agora/service/BootReceiver.kt",
-            "com/newoether/agora/service/EmbeddingCacheWorker.kt",
-            "com/newoether/agora/service/LoopWorker.kt",
-            "com/newoether/agora/service/TaskWorker.kt",
+            "com/mochiagent/app/service/AutoBackupWorker.kt",
+            "com/mochiagent/app/service/BootReceiver.kt",
+            "com/mochiagent/app/service/EmbeddingCacheWorker.kt",
+            "com/mochiagent/app/service/LoopWorker.kt",
+            "com/mochiagent/app/service/TaskWorker.kt",
         ).forEach { path ->
             val source = File(root, path).readText()
             assertTrue("$path must await the process database gate", source.contains(".awaitContainer()"))
@@ -63,7 +63,7 @@ class DatabaseStartupSafetySourceContractTest {
     fun `diagnostic capture restores before the database startup gate`() {
         val application = File(
             locateMainSourceRoot(),
-            "com/newoether/agora/AgoraApplication.kt",
+            "com/mochiagent/app/AgoraApplication.kt",
         ).readText()
         val diagnosticsInitialize = application.indexOf("DeveloperDiagnostics.initialize(")
         val databaseInitialize = application.indexOf("startupGate.initialize()")
@@ -77,12 +77,12 @@ class DatabaseStartupSafetySourceContractTest {
     @Test
     fun `database ready publishes before process maintenance and list release owns startup`() {
         val root = locateMainSourceRoot()
-        val gate = File(root, "com/newoether/agora/DatabaseStartupGate.kt").readText()
-        val application = File(root, "com/newoether/agora/AgoraApplication.kt").readText()
-        val container = File(root, "com/newoether/agora/di/AppContainer.kt").readText()
-        val viewModel = File(root, "com/newoether/agora/viewmodel/ChatViewModel.kt").readText()
-        val rag = File(root, "com/newoether/agora/viewmodel/RagManager.kt").readText()
-        val tasks = File(root, "com/newoether/agora/automation/TaskManager.kt").readText()
+        val gate = File(root, "com/mochiagent/app/DatabaseStartupGate.kt").readText()
+        val application = File(root, "com/mochiagent/app/AgoraApplication.kt").readText()
+        val container = File(root, "com/mochiagent/app/di/AppContainer.kt").readText()
+        val viewModel = File(root, "com/mochiagent/app/viewmodel/ChatViewModel.kt").readText()
+        val rag = File(root, "com/mochiagent/app/viewmodel/RagManager.kt").readText()
+        val tasks = File(root, "com/mochiagent/app/automation/TaskManager.kt").readText()
 
         assertFalse(gate.contains("startProcessServices"))
         assertFalse(application.contains("startProcessServices ="))

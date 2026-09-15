@@ -189,13 +189,13 @@ class GenerationErrorPresentationTest {
     @Test
     fun `chat generation consumers use typed localized presentation`() {
         val generation = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/GenerationManager.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/GenerationManager.kt",
         )
         val transcription = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/TranscriptionManager.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/TranscriptionManager.kt",
         )
         val bar = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/GenerationErrorBar.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/GenerationErrorBar.kt",
         )
 
         assertTrue(generation.contains("localizedGenerationError(context, event.error)"))
@@ -208,10 +208,10 @@ class GenerationErrorPresentationTest {
     @Test
     fun `Local semantic error code reaches live and final persisted segments`() {
         val generation = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/GenerationManager.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/GenerationManager.kt",
         )
         val streaming = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/GenerationStreamingSegments.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/GenerationStreamingSegments.kt",
         )
         val liveProjection = generation
             .substringAfter("segments = buildLiveSegments(")
@@ -242,7 +242,7 @@ class GenerationErrorPresentationTest {
     @Test
     fun `Local context help reuses the shared terminal and Markdown link presentation`() {
         val bar = sourceFile(
-            "app/src/main/java/com/newoether/agora/ui/chat/message/GenerationErrorBar.kt",
+            "app/src/main/java/com/mochiagent/app/ui/chat/message/GenerationErrorBar.kt",
         )
         val helpAction = bar
             .substringAfter("private fun LocalContextHelpAction(onClick: () -> Unit)")
@@ -265,7 +265,7 @@ class GenerationErrorPresentationTest {
     @Test
     fun `terminal finalization failures escape to the bound Run recovery owner`() {
         val generation = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/GenerationManager.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/GenerationManager.kt",
         )
         val failureLog =
             "DebugLog.e(\"AgoraVM\", \"Failed to execute terminal generation effect\", e)"

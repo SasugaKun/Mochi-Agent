@@ -78,7 +78,7 @@ class NativeBackupArchiveTest {
     @Test
     fun contextOpenUsesFileDescriptorWithoutWholeArchiveCacheCopy() {
         val source = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/NativeBackupArchive.kt",
+            "app/src/main/java/com/mochiagent/app/data/NativeBackupArchive.kt",
         ).replace("\r\n", "\n")
         val contextOpen = source.substringAfter("fun open(context: Context, uri: Uri)")
             .substringBefore("internal fun open(")
@@ -284,7 +284,7 @@ class NativeBackupArchiveTest {
     @Test
     fun importerPreflightsBeforeMutationAndExtractionUsesCheckedCopy() {
         val importer = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/DataImporter.kt",
+            "app/src/main/java/com/mochiagent/app/data/DataImporter.kt",
         ).replace("\r\n", "\n")
         val importBody = importer.substringAfter("suspend fun import(")
         val preflight = importBody.indexOf("opened.preflightImportResources(")
@@ -302,7 +302,7 @@ class NativeBackupArchiveTest {
         assertFalse(fontRestore.contains("archive.stream("))
 
         val media = sourceFile(
-            "app/src/main/java/com/newoether/agora/data/NativeConversationMediaRestorer.kt",
+            "app/src/main/java/com/mochiagent/app/data/NativeConversationMediaRestorer.kt",
         )
         assertTrue(media.contains("archive.copyTo(path, target)"))
         assertFalse(media.contains("archive.stream(path)"))

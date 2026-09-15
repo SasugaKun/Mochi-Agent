@@ -18,7 +18,7 @@ import org.junit.Test
 class ChatDaoRunAdmissionTest {
     @Test
     fun selectionOnlyQueriesNeverWriteConversationRecency() {
-        val dao = sourceFile("app/src/main/java/com/newoether/agora/data/local/ChatContextCompactDao.kt")
+        val dao = sourceFile("app/src/main/java/com/mochiagent/app/data/local/ChatContextCompactDao.kt")
             .replace("\r\n", "\n")
         listOf(
             "suspend fun updateMessageBranchSelections(",
@@ -36,10 +36,10 @@ class ChatDaoRunAdmissionTest {
     @Test
     fun automationAdmissionsNeverTouchConversationRecency() {
         val taskEngine = sourceFile(
-            "app/src/main/java/com/newoether/agora/automation/TaskExecutionEngine.kt",
+            "app/src/main/java/com/mochiagent/app/automation/TaskExecutionEngine.kt",
         ).replace("\r\n", "\n")
         val generationController = sourceFile(
-            "app/src/main/java/com/newoether/agora/viewmodel/MessageGenerationController.kt",
+            "app/src/main/java/com/mochiagent/app/viewmodel/MessageGenerationController.kt",
         ).replace("\r\n", "\n")
         val automationSend = generationController
             .substringAfter("internal suspend fun sendMessageFromAutomationAwaitingCompletion(")

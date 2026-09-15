@@ -210,7 +210,7 @@ class ExperimentalGenerationUiSourceContractTest {
         val presentation = source(root, "message/ThinkingSegmentPresentation.kt")
         val sharedBackButton = File(
             root,
-            "com/newoether/agora/ui/components/CircularBackButton.kt",
+            "com/mochiagent/app/ui/components/CircularBackButton.kt",
         ).readText()
 
         assertTrue(timeline.contains("compactSegmentDisplayTitle("))
@@ -428,7 +428,7 @@ class ExperimentalGenerationUiSourceContractTest {
     }
 
     private fun source(root: File, relative: String): String =
-        File(root, "com/newoether/agora/ui/chat/$relative").readText()
+        File(root, "com/mochiagent/app/ui/chat/$relative").readText()
 
     private fun locateMainSourceRoot(): File {
         var directory = File(requireNotNull(System.getProperty("user.dir"))).absoluteFile

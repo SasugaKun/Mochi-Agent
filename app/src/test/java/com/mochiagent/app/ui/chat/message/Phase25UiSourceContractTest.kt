@@ -15,7 +15,7 @@ class Phase25UiSourceContractTest {
         val tail = chatSource("StreamingTailIndicator.kt")
         val follower = File(
             mainSourceRoot(),
-            "com/newoether/agora/ui/chat/message/InlineActivityDotFollower.kt",
+            "com/mochiagent/app/ui/chat/message/InlineActivityDotFollower.kt",
         )
 
         assertFalse(follower.exists())
@@ -127,13 +127,13 @@ class Phase25UiSourceContractTest {
     }
 
     private fun source(name: String): String =
-        File(mainSourceRoot(), "com/newoether/agora/ui/chat/message/$name").readText()
+        File(mainSourceRoot(), "com/mochiagent/app/ui/chat/message/$name").readText()
 
     private fun chatSource(name: String): String =
-        File(mainSourceRoot(), "com/newoether/agora/ui/chat/$name").readText()
+        File(mainSourceRoot(), "com/mochiagent/app/ui/chat/$name").readText()
 
     private fun componentSource(name: String): String =
-        File(mainSourceRoot(), "com/newoether/agora/ui/components/$name").readText()
+        File(mainSourceRoot(), "com/mochiagent/app/ui/components/$name").readText()
 
     private fun mainSourceRoot(): File = locate("app/src/main/java")
 

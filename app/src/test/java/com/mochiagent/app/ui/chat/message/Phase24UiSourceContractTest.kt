@@ -142,10 +142,10 @@ class Phase24UiSourceContractTest {
         }.groupValues[1]
 
     private fun source(relative: String): String =
-        File(mainSourceRoot(), "com/newoether/agora/ui/chat/$relative").readText()
+        File(mainSourceRoot(), "com/mochiagent/app/ui/chat/$relative").readText()
 
     private fun sourceOrEmpty(relative: String): String =
-        File(mainSourceRoot(), "com/newoether/agora/ui/chat/$relative")
+        File(mainSourceRoot(), "com/mochiagent/app/ui/chat/$relative")
             .takeIf(File::isFile)
             ?.readText()
             .orEmpty()
